@@ -1,6 +1,6 @@
 <?php
 
-namespace Source\Infra\http\Controllers\Web;
+namespace Source\Infra\Http\Controllers\Web;
 
 interface PresentationInterface
 {

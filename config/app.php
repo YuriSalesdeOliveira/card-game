@@ -2,8 +2,8 @@
 
 return [
     'site' => [
-        'name' => 'pdf-generator',
-        'description' => 'Gerador de PDF',
+        'name' => 'cardGame',
+        'description' => 'Jogo de cartas',
         'domain' => '',
         'locale' => 'pt_BR',
         'root' => 'http://localhost',

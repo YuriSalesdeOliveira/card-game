@@ -1,6 +1,6 @@
 <?php
 
-namespace Source\domain\ValueObjects;
+namespace Source\Domain\ValueObjects;
 
 use DomainException;
 
