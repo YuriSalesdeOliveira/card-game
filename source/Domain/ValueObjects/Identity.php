@@ -13,6 +13,11 @@ final class Identity
         $this->identity = $identity;
     }
 
+    public function value(): string
+    {
+        return $this->identity;
+    }
+
     public static function parse(string $identity): Identity
     {
         self::validate($identity);

@@ -21,7 +21,6 @@ class Card extends Entity
         int $power,
         int $overall,
         DateTimeInterface $createdAt,
-        DateTimeInterface $updatedAt
     ) {
         $this->attributes = [
             'id' => $id,
@@ -34,10 +33,27 @@ class Card extends Entity
             'fighting' => $fighting,
             'power' => $power,
             'overall' => $overall,
-            'createdAt' => $createdAt,
-            'updatedAt' => $updatedAt
+            'createdAt' => $createdAt
         ];
     }
+
+    public function toArray(): array
+    {
+        return [
+            'id' => (string) $this->getId(),
+            'image' => (string) $this->getImage(),
+            'name' => (string) $this->getName(),
+            'intelligence' => $this->getIntelligence(),
+            'force' => $this->getForce(),
+            'velocity' => $this->getVelocity(),
+            'resistance' => $this->getResistance(),
+            'fighting' => $this->getFighting(),
+            'power' => $this->getPower(),
+            'overall' => $this->getOverall(),
+            'createdAt' => $this->getCreatedAt()
+        ];
+    }
+
     // setters
     public function setId(Identity $id): void
     {

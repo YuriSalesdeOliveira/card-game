@@ -9,7 +9,7 @@ AppFactory::setContainer($container);
 
 $app = AppFactory::create();
 $app->addErrorMiddleware(true, true, true);
-$app->setBasePath('/pdf-generator');
+$app->setBasePath('/cardGame');
 
 $webRoutes = require(dirname(__DIR__) . '/routes/web.php');
 $apiRoutes = require(dirname(__DIR__) . '/routes/api.php');

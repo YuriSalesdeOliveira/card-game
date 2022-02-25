@@ -14,10 +14,17 @@ class CardCollection extends Entity
         $this->setCollection($collection);
     }
 
+    public function toArray(): array
+    {
+        return [];
+    }
+
     public function setCollection(array $collection): void
     {
         if (count($collection) !== static::CARD_LIMIT) {
-            throw new DomainException('The number of cards cannot be greater than 10.');
+            throw new DomainException(
+                sprintf('The number of cards must be equal to %s', static::CARD_LIMIT)
+            );
         }
 
         $this->attributes['collection'] = $collection;

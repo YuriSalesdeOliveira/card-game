@@ -44,8 +44,5 @@ abstract class Entity
         return $this->attributes['updatedAt'];
     }
 
-    public function toArray(): array
-    {
-        return $this->attributes;
-    }
+    abstract public function toArray(): array;
 }

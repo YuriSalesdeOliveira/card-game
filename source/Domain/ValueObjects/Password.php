@@ -13,6 +13,11 @@ final class Password
         $this->password = $password;
     }
 
+    public function value(): string
+    {
+        return $this->password;
+    }
+
     public static function parse(string $password): Password
     {
         self::validate($password);

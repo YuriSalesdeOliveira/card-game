@@ -3,7 +3,6 @@
 namespace Source\Domain\Entities;
 
 use DateTimeInterface;
-use Source\domain\Entities\Entity;
 use Source\Domain\ValueObjects\Email;
 use Source\Domain\ValueObjects\Identity;
 use Source\Domain\ValueObjects\Password;
@@ -15,15 +14,18 @@ class Player extends Entity
         Email $email,
         Password $password,
         DateTimeInterface $createdAt,
-        DateTimeInterface $updatedAt
     ) {
         $this->attributes = [
             'id' => $id,
             'email' => $email,
             'password' => $password,
             'createdAt' => $createdAt,
-            'updatedAt' => $updatedAt
         ];
+    }
+    
+    public function toArray(): array
+    {
+        return [];
     }
     // setters
     public function setId(Identity $id): void

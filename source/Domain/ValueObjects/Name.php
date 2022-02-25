@@ -13,6 +13,11 @@ final class Name
         $this->name = $name;
     }
 
+    public function value(): string
+    {
+        return $this->name;
+    }
+
     public static function parse(string $name): Name
     {
         self::validate($name);

@@ -13,6 +13,11 @@ final class Image
         $this->image = $image;
     }
 
+    public function value(): string
+    {
+        return $this->image;
+    }
+
     public static function parse(string $image): Image
     {
         self::validate($image);
