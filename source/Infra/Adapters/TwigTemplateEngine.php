@@ -5,6 +5,7 @@ namespace Source\Infra\Adapters;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 use Source\Infra\Presentation\Interfaces\TemplateEngineInterface;
+use Twig\TwigFunction;
 
 class TwigTemplateEngine implements TemplateEngineInterface
 {
@@ -17,6 +18,12 @@ class TwigTemplateEngine implements TemplateEngineInterface
             'cache' => path('cache'),
             'debug' => true
         ]);
+
+        $functions = require(path('config') . '/twig.php');
+
+        foreach ($functions as $function) {
+            $this->twig->addFunction($function);
+        }
     }
 
     public function render(string $name, array $context = []): string

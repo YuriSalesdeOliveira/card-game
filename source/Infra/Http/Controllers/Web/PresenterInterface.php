@@ -2,7 +2,7 @@
 
 namespace Source\Infra\Http\Controllers\Web;
 
-interface PresentationInterface
+interface PresenterInterface
 {
     public function output(array $data): mixed;
 }

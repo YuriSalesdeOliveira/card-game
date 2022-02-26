@@ -4,13 +4,13 @@ namespace Source\Infra\Repositories\Memory;
 
 use DateTimeImmutable;
 use Source\Domain\Entities\Player;
-use Source\Domain\Repositories\GetPlayerCardsRepositoryInterface;
 use Source\Domain\ValueObjects\Email;
 use Source\Domain\ValueObjects\Identity;
 use Source\Domain\ValueObjects\Password;
 use Source\Domain\Repositories\GetPlayerRepositoryInterface;
+use Source\Domain\Repositories\GetPlayerCardIdsRepositoryInterface;
 
-class PlayerRepository implements GetPlayerRepositoryInterface, GetPlayerCardsRepositoryInterface
+class PlayerRepository implements GetPlayerRepositoryInterface, GetPlayerCardIdsRepositoryInterface
 {
     private array $players = [
         [
@@ -21,13 +21,18 @@ class PlayerRepository implements GetPlayerRepositoryInterface, GetPlayerCardsRe
         ]
     ];
 
-    private array $playerCard = [
-        '92216f3a776a0365fc24fcf2d88dfe21'
+    private array $playerCardIds = [
+        'b0783a1f6d678676111ba958db3ae9db' => [
+            '92216f3a776a0365fc24fcf2d88dfe21',
+            'c6c6b47581155db3b410b5de404a7755',
+            '38d1ef4371fecfc1df5ab7cd895ffab9'
+        ]
     ];
     
     public function getPlayerById(Identity $id): Player
     {
         foreach ($this->players as $player) {
+            
             if ($player['id'] === $id->value()) {
 
                 return new Player(
@@ -40,8 +45,13 @@ class PlayerRepository implements GetPlayerRepositoryInterface, GetPlayerCardsRe
         }
     }
 
-    public function getPlayerCards(Player $player): array
+    public function getPlayerCardIds(Player $player): array
     {
-        return $this->playerCard;
+        foreach ($this->playerCardIds as $playerId => $cardIds) {
+
+            if ($playerId === $player->getId()->value()) {
+                return $cardIds;
+            }
+        }
     }
 }

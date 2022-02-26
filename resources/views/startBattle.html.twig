@@ -1,0 +1,27 @@
+{% extends "template/layout.html.twig" %}
+
+{% block content %}
+    {% for card in cards %}
+    
+        <form action="#" method="post">
+
+            <input type="radio" name="card-collection" id="{{ card.id }}" class="hidden">
+            <label for="{{ card.id }}" class="flex ">
+                <img src="{{ card.image }}" alt="card-image" class="w-[200px] h-[400px] mr-3">
+                <div class="flex flex-col h-100">
+                    <span>name: {{ card.name }}</span>
+                    <span>intelligence: {{ card.intelligence }}</span>
+                    <span>force: {{ card.force }}</span>
+                    <span>velocity: {{ card.velocity }}</span>
+                    <span>resistance: {{ card.resistance }}</span>
+                    <span>fighting: {{ card.fighting }}</span>
+                    <span>power: {{ card.power }}</span>
+                    <span>overall: {{ card.overall }}</span>
+                </div>
+            </label>
+
+        </form>
+
+    {% endfor %}
+    
+{% endblock content %}

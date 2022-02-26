@@ -4,7 +4,7 @@ namespace Source\Infra\Presentation\Traits;
 
 use Source\Infra\Presentation\Interfaces\TemplateEngineInterface;
 
-trait InjectTemplateEngineTrait
+trait AddTemplateEngineTrait
 {
     protected TemplateEngineInterface $templateEngine;
 

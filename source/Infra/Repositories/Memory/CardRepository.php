@@ -14,7 +14,33 @@ class CardRepository implements GetCardRepositoryInterface
     private array $cards = [
         [
             'id' => '92216f3a776a0365fc24fcf2d88dfe21',
-            'image' => 'https://i.pinimg.com/564x/ff/7d/bf/ff7dbfbbf11eff9527b9b5a53a8e52ed.jpg',
+            'image' => 'http://localhost/cardGame/assets/images/cards/blackPanther.png',
+            'name' => 'Wolverine',
+            'intelligence' => 45,
+            'force' => 50,
+            'velocity' => 50,
+            'resistance' => 75,
+            'fighting' => 80,
+            'power' => 80,
+            'overall' => 380,
+            'createdAt' => '2022-02-24 21:07:56'
+        ],
+        [
+            'id' => 'c6c6b47581155db3b410b5de404a7755',
+            'image' => 'http://localhost/cardGame/assets/images/cards/nightcrawler.jpeg',
+            'name' => 'Wolverine',
+            'intelligence' => 45,
+            'force' => 50,
+            'velocity' => 50,
+            'resistance' => 75,
+            'fighting' => 80,
+            'power' => 80,
+            'overall' => 380,
+            'createdAt' => '2022-02-24 21:07:56'
+        ],
+        [
+            'id' => '38d1ef4371fecfc1df5ab7cd895ffab9',
+            'image' => 'http://localhost/cardGame/assets/images/cards/mysterio.jpeg',
             'name' => 'Wolverine',
             'intelligence' => 45,
             'force' => 50,
