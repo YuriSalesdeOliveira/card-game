@@ -4,15 +4,15 @@ use Slim\Factory\AppFactory;
 
 require_once(dirname(__DIR__) . '/vendor/autoload.php');
 
-$container = require(dirname(__DIR__) . '/config/container.php');
+$container = require(path('config') . '/container.php');
 AppFactory::setContainer($container);
 
 $app = AppFactory::create();
 $app->addErrorMiddleware(true, true, true);
-$app->setBasePath('/cardGame');
+$app->setBasePath(app('site.basePath'));
 
-$webRoutes = require(dirname(__DIR__) . '/routes/web.php');
-$apiRoutes = require(dirname(__DIR__) . '/routes/api.php');
+$webRoutes = require(path('routes') . '/web.php');
+$apiRoutes = require(path('routes') . '/api.php');
 
 $webRoutes($app);
 $apiRoutes($app);
