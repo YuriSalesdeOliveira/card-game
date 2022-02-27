@@ -8,8 +8,14 @@
     <title>cardGame</title>
 </head>
 <body>
+    <header class="flex justify-center items-center w-100 h-20 bg-slate-200">
+        <span>{{ page }}</span>
+    </header>
+
     {% block content %}
-        
     {% endblock content %}
+
+    {% block footer %}
+    {% endblock footer %}
 </body>
 </html>

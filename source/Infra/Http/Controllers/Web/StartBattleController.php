@@ -15,7 +15,7 @@ class StartBattleController extends Controller
         private StartBattlePresenter $presenter
     ) {}
 
-    public function handle(Request $request, Response $response)
+    public function handle(Request $request, Response $response): Response
     {
         $input = new InputBoundary('b0783a1f6d678676111ba958db3ae9db');
 

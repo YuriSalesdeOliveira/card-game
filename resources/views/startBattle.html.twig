@@ -1,27 +1,32 @@
 {% extends "template/layout.html.twig" %}
 
 {% block content %}
-    {% for card in cards %}
+    <form action="http://localhost/cardGame/create/card-collection" method="post">
+        <div class="card-group">
+            {% for card in cards %}
     
-        <form action="#" method="post">
-
-            <input type="radio" name="card-collection" id="{{ card.id }}" class="hidden">
-            <label for="{{ card.id }}" class="flex ">
-                <img src="{{ card.image }}" alt="card-image" class="w-[200px] h-[400px] mr-3">
-                <div class="flex flex-col h-100">
-                    <span>name: {{ card.name }}</span>
-                    <span>intelligence: {{ card.intelligence }}</span>
-                    <span>force: {{ card.force }}</span>
-                    <span>velocity: {{ card.velocity }}</span>
-                    <span>resistance: {{ card.resistance }}</span>
-                    <span>fighting: {{ card.fighting }}</span>
-                    <span>power: {{ card.power }}</span>
-                    <span>overall: {{ card.overall }}</span>
+                <div class="card-item">
+                    <input type="checkbox" name="card-collection[]" id="{{ card.id }}" value="{{ card.id }}">
+                    <label for="{{ card.id }}">
+                        <img src="{{ card.image }}" alt="card-image">
+                        <ul>
+                            <li><span>name:</span> {{ card.name }}</li>
+                            <li><span>intelligence:</span> {{ card.intelligence }}</li>
+                            <li><span>force:</span> {{ card.force }}</li>
+                            <li><span>velocity:</span> {{ card.velocity }}</li>
+                            <li><span>resistance:</span> {{ card.resistance }}</li>
+                            <li><span>fighting:</span> {{ card.fighting }}</li>
+                            <li><span>power:</span> {{ card.power }}</li>
+                            <li><span>overall:</span> {{ card.overall }}</li>
+                        </ul>
+                    </label>
                 </div>
-            </label>
+            
+            {% endfor %}
 
-        </form>
+        </div>
 
-    {% endfor %}
-    
+        <button type="submit">Start</button>
+    </form>
+
 {% endblock content %}

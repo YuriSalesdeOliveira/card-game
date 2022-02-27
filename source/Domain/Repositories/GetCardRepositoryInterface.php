@@ -8,4 +8,5 @@ use Source\Domain\ValueObjects\Identity;
 interface GetCardRepositoryInterface
 {
     public function getCardById(Identity $id): Card;
+    public function getCardsById(array $ids): array;
 }

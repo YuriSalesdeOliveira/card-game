@@ -3,11 +3,10 @@
 namespace Source\Domain\Entities;
 
 use DomainException;
-use Source\domain\Entities\Entity;
 
 class CardCollection extends Entity
 {
-    const CARD_LIMIT = 10;
+    const CARD_LIMIT = 2;
 
     public function __construct(array $collection)
     {   
@@ -16,7 +15,13 @@ class CardCollection extends Entity
 
     public function toArray(): array
     {
-        return [];
+        $cardCollection = [];
+
+        foreach ($this->attributes['collection'] as $card) {
+            $cardCollection[] = $card->toArray();
+        }
+
+        return $cardCollection;
     }
 
     public function setCollection(array $collection): void
@@ -27,7 +32,14 @@ class CardCollection extends Entity
             );
         }
 
-        $this->attributes['collection'] = $collection;
+        foreach ($collection as $card) {
+            if (!($card instanceof Card)) {
+                throw new DomainException('All cards must be an instance of the card entity.');
+            }
+
+            $this->attributes['collection'][] = $card;
+        }
+
     }
 
     public function getCollection(): array

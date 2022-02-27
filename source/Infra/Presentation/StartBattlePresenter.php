@@ -21,6 +21,7 @@ class StartBattlePresenter implements PresenterInterface
         }
 
         return $this->templateEngine->render('startBattle', [
+            'page' => 'Start Battle',
             'cards' => $cards
         ]);
     }

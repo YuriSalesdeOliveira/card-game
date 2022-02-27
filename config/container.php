@@ -15,6 +15,8 @@ use Source\Domain\Repositories\GetPlayerRepositoryInterface;
 use Source\Infra\Http\Controllers\Web\StartBattleController;
 use Source\Infra\Presentation\Interfaces\TemplateEngineInterface;
 use Source\Domain\Repositories\GetPlayerCardIdsRepositoryInterface;
+use Source\App\UseCases\CreateCardCollection\CreateCardCollection;
+use Source\Infra\Http\Controllers\Web\CreateCardCollectionController;
 
 $containerBuilder = new ContainerBuilder();
 $containerBuilder->addDefinitions([
@@ -28,14 +30,17 @@ $containerBuilder->addDefinitions([
 
     TemplateEngineInterface::class => autowire(TwigTemplateEngine::class),
 
-    // StartBattle
 
     GetPlayerRepositoryInterface::class => get(PlayerRepository::class),
     GetPlayerCardIdsRepositoryInterface::class => get(PlayerRepository::class),
     GetCardRepositoryInterface::class => get(CardRepository::class),
+    // StartBattle
     StartBattle::class => autowire(StartBattle::class),
     StartBattlePresenter::class => autowire(StartBattlePresenter::class),
     StartBattleController::class => autowire(StartBattleController::class),
+    // CreateCardCollection
+    CreateCardCollection::class => autowire(CreateCardCollection::class),
+    CreateCardCollectionController::class => autowire(CreateCardCollectionController::class),
 
 
 ]);

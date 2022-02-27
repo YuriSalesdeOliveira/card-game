@@ -58,7 +58,7 @@ class CardRepository implements GetCardRepositoryInterface
         foreach ($this->cards as $card) {
             if ($card['id'] === $id->value()) { 
                 return new Card(
-                    id: $id,
+                    id: new Identity($card['id']),
                     image: new Image($card['image']),
                     name: new Name($card['name']),
                     intelligence: $card['intelligence'],
@@ -72,5 +72,16 @@ class CardRepository implements GetCardRepositoryInterface
                 );
             }
         }
+    }
+
+    public function getCardsById(array $ids): array
+    {
+        $cards = [];
+        
+        foreach ($ids as $id) {
+            $cards[] = $this->getCardById(new Identity($id));
+        }
+
+        return $cards;
     }
 }

@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.card-group {
+    @apply flex w-5/6 mx-auto mt-20;
+}
+
+.card-item > input {
+    @apply hidden;
+}
+
+.card-item > input:checked ~ label {
+    @apply shadow-lg shadow-cyan-500/50;
+}
+
+.card-item > label {
+    @apply flex mr-10 shadow-lg rounded-md overflow-hidden cursor-pointer hover:bg-slate-50;
+}
+
+.card-item label > img {
+    @apply w-[150px] h-[265px];
+}
+
+.card-item label > ul {
+    @apply flex flex-col p-3;
+}
+
+.card-item label > ul li {
+    @apply text-gray-700;
+}
