@@ -5,11 +5,17 @@ namespace Source\App\UseCases\CreateCardCollection;
 class OutputBoundary
 {
     public function __construct(
-        private array $cardCollection
+        private array $playerCardCollection,
+        private array $machineCardCollection
     ) {}
 
-    public function getCardCollection(): array
+    public function getPlayerCardCollection(): array
     {
-        return $this->cardCollection;
+        return $this->playerCardCollection;
+    }
+
+    public function getMachineCardCollection(): array
+    {
+        return $this->machineCardCollection;
     }
 }

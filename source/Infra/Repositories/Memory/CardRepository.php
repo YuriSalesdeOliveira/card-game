@@ -50,7 +50,33 @@ class CardRepository implements GetCardRepositoryInterface
             'power' => 80,
             'overall' => 380,
             'createdAt' => '2022-02-24 21:07:56'
-        ]
+        ],
+        [
+            'id' => '5a8b297c8078b5de394707bef47cd3bf',
+            'image' => 'http://localhost/cardGame/assets/images/cards/mysterio.jpeg',
+            'name' => 'Wolverine',
+            'intelligence' => 45,
+            'force' => 50,
+            'velocity' => 50,
+            'resistance' => 75,
+            'fighting' => 80,
+            'power' => 80,
+            'overall' => 380,
+            'createdAt' => '2022-02-24 21:07:56'
+        ],
+        [
+            'id' => '16404025c29660241cbbdebcfcbb281f',
+            'image' => 'http://localhost/cardGame/assets/images/cards/blackPanther.png',
+            'name' => 'Wolverine',
+            'intelligence' => 45,
+            'force' => 50,
+            'velocity' => 50,
+            'resistance' => 75,
+            'fighting' => 80,
+            'power' => 80,
+            'overall' => 380,
+            'createdAt' => '2022-02-24 21:07:56'
+        ],
     ];
 
     public function getCardById(Identity $id): Card
@@ -81,6 +107,21 @@ class CardRepository implements GetCardRepositoryInterface
         foreach ($ids as $id) {
             $cards[] = $this->getCardById(new Identity($id));
         }
+
+        return $cards;
+    }
+
+    public function getRandomCards(int $limit): array
+    {
+        $cardIndexes = array_rand($this->cards, $limit);
+        
+        $cardIds = [];
+
+        foreach ($cardIndexes as $index) {
+            $cardIds[] = $this->cards[$index]['id'];
+        }
+        
+        $cards = $this->getCardsById($cardIds);
 
         return $cards;
     }

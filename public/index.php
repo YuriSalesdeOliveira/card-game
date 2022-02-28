@@ -1,5 +1,8 @@
 <?php
 
+ob_start();
+session_start();
+
 use Slim\Factory\AppFactory;
 
 require_once(dirname(__DIR__) . '/vendor/autoload.php');
@@ -18,3 +21,5 @@ $webRoutes($app);
 $apiRoutes($app);
 
 $app->run();
+
+ob_end_flush();

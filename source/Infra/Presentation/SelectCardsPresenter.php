@@ -5,7 +5,7 @@ namespace Source\Infra\Presentation;
 use Source\Infra\Http\Controllers\Web\PresenterInterface;
 use Source\Infra\Presentation\Traits\AddTemplateEngineTrait;
 
-class StartBattlePresenter implements PresenterInterface
+class SelectCardsPresenter implements PresenterInterface
 {
     use AddTemplateEngineTrait;
 
@@ -20,8 +20,8 @@ class StartBattlePresenter implements PresenterInterface
             array_push($cards, $card);
         }
 
-        return $this->templateEngine->render('startBattle', [
-            'page' => 'Start Battle',
+        return $this->templateEngine->render('selectCards', [
+            'page' => 'Select Cards',
             'cards' => $cards
         ]);
     }

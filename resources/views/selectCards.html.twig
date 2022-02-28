@@ -1,12 +1,23 @@
 {% extends "template/layout.html.twig" %}
 
 {% block content %}
+
+    <div class="w-[600px] py-5 px-10 mx-auto mt-10 text-slate-800 rounded bg-slate-200">
+        <h3 class="font-medium">Prepare-se para a batalha !</h3>
+        <p>
+            Escolha os 5 melhores herois para lutar em uma batalha.
+            Você pode conseguir novas cartas se vencer. Boa sorte !
+        </p>
+    </div>
+
     <form action="http://localhost/cardGame/create/card-collection" method="post">
         <div class="card-group">
             {% for card in cards %}
-    
                 <div class="card-item">
-                    <input type="checkbox" name="card-collection[]" id="{{ card.id }}" value="{{ card.id }}">
+
+                    <input type="checkbox" name="card-collection[]" id="{{ card.id }}"
+                        value="{{ card.id }}">
+
                     <label for="{{ card.id }}">
                         <img src="{{ card.image }}" alt="card-image">
                         <ul>
@@ -20,13 +31,14 @@
                             <li><span>overall:</span> {{ card.overall }}</li>
                         </ul>
                     </label>
-                </div>
-            
-            {% endfor %}
 
+                </div>
+            {% endfor %}
         </div>
 
-        <button type="submit">Start</button>
+        <button type="submit"
+            class="flex text-sm text-slate-100 uppercase py-2 px-8 my-10 mx-auto
+                bg-slate-400 rounded hover:bg-slate-500">Start Battle</button>
     </form>
 
 {% endblock content %}

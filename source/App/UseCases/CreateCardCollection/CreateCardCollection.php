@@ -13,10 +13,14 @@ class CreateCardCollection
 
     public function handle(InputBoundary $input): OutputBoundary
     {
-        $cards = $this->getCardRepository->getCardsById($input->getCardIds());
+        $playerCards = $this->getCardRepository->getCardsById($input->getCardIds());
+        $machineCards = $this->getCardRepository->getRandomCards(
+            CardCollection::NUMBER_OF_CARDS_FOR_BATTLE
+        );
 
-        $cardCollection = new CardCollection($cards);
+        $playerCardCollection = new CardCollection($playerCards);
+        $machineCardCollection = new CardCollection($machineCards);
 
-        return new OutputBoundary($cardCollection->toArray());
+        return new OutputBoundary($playerCardCollection->toArray(), $machineCardCollection->toArray());
     }
 }

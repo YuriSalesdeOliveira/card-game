@@ -8,12 +8,14 @@
     <title>cardGame</title>
 </head>
 <body>
-    <header class="flex justify-center items-center w-100 h-20 bg-slate-200">
-        <span>{{ page }}</span>
+    <header class="flex justify-center items-center w-100 h-20 bg-slate-400">
+        <span class="text-lg text-slate-700 uppercase">{{ page }}</span>
     </header>
 
-    {% block content %}
-    {% endblock content %}
+    <main class="w-5/6 mx-auto">
+        {% block content %}
+        {% endblock content %}
+    </main>
 
     {% block footer %}
     {% endblock footer %}

@@ -2,17 +2,17 @@
 
 namespace Source\Infra\Http\Controllers\Web;
 
-use Source\App\UseCases\StartBattle\StartBattle;
-use Source\App\UseCases\StartBattle\InputBoundary;
+use Source\App\UseCases\SelectCards\SelectCards;
+use Source\App\UseCases\SelectCards\InputBoundary;
 use Psr\Http\Message\ResponseInterface as Response;
-use Source\Infra\Presentation\StartBattlePresenter;
+use Source\Infra\Presentation\SelectCardsPresenter;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-class StartBattleController extends Controller
+class SelectCardsController extends Controller
 {
     public function __construct(
-        private StartBattle $useCase,
-        private StartBattlePresenter $presenter
+        private SelectCards $useCase,
+        private SelectCardsPresenter $presenter
     ) {}
 
     public function handle(Request $request, Response $response): Response

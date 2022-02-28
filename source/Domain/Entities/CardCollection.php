@@ -6,44 +6,46 @@ use DomainException;
 
 class CardCollection extends Entity
 {
-    const CARD_LIMIT = 2;
+    const NUMBER_OF_CARDS_FOR_BATTLE = 2;
 
-    public function __construct(array $collection)
+    public function __construct(array $cardCollection, bool $countCards = true)
     {   
-        $this->setCollection($collection);
+        $this->setCollection($cardCollection, $countCards);
     }
 
     public function toArray(): array
     {
         $cardCollection = [];
 
-        foreach ($this->attributes['collection'] as $card) {
+        foreach ($this->attributes['cardCollection'] as $card) {
             $cardCollection[] = $card->toArray();
         }
 
         return $cardCollection;
     }
 
-    public function setCollection(array $collection): void
+    public function setCollection(array $cardCollection, bool $countCards = true): void
     {
-        if (count($collection) !== static::CARD_LIMIT) {
-            throw new DomainException(
-                sprintf('The number of cards must be equal to %s', static::CARD_LIMIT)
-            );
-        }
-
-        foreach ($collection as $card) {
+        foreach ($cardCollection as $card) {
             if (!($card instanceof Card)) {
                 throw new DomainException('All cards must be an instance of the card entity.');
             }
-
-            $this->attributes['collection'][] = $card;
         }
+
+        if ($countCards) {
+            if (count($cardCollection) !== static::NUMBER_OF_CARDS_FOR_BATTLE) {
+                throw new DomainException(
+                    sprintf('The number of cards must be equal to %s', static::NUMBER_OF_CARDS_FOR_BATTLE)
+                );
+            }
+        }
+        
+        $this->attributes['cardCollection'] = $cardCollection;
 
     }
 
     public function getCollection(): array
     {
-        return $this->attributes['collection'];
+        return $this->attributes['cardCollection'];
     }
 }

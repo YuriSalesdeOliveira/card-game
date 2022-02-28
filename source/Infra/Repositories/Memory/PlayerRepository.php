@@ -25,7 +25,9 @@ class PlayerRepository implements GetPlayerRepositoryInterface, GetPlayerCardIds
         'b0783a1f6d678676111ba958db3ae9db' => [
             '92216f3a776a0365fc24fcf2d88dfe21',
             'c6c6b47581155db3b410b5de404a7755',
-            '38d1ef4371fecfc1df5ab7cd895ffab9'
+            '38d1ef4371fecfc1df5ab7cd895ffab9',
+            '5a8b297c8078b5de394707bef47cd3bf',
+            '16404025c29660241cbbdebcfcbb281f'
         ]
     ];
     

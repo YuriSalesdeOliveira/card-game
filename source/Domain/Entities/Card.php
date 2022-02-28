@@ -22,19 +22,17 @@ class Card extends Entity
         int $overall,
         DateTimeInterface $createdAt,
     ) {
-        $this->attributes = [
-            'id' => $id,
-            'image' => $image,
-            'name' => $name,
-            'intelligence' => $intelligence,
-            'force' => $force,
-            'velocity' => $velocity,
-            'resistance' => $resistance,
-            'fighting' => $fighting,
-            'power' => $power,
-            'overall' => $overall,
-            'createdAt' => $createdAt
-        ];
+        $this->setId($id);
+        $this->setImage($image);
+        $this->setName($name);
+        $this->setIntelligence($intelligence);
+        $this->setForce($force);
+        $this->setVelocity($velocity);
+        $this->setResistance($resistance);
+        $this->setFighting($fighting);
+        $this->setPower($power);
+        $this->setOverall($overall);
+        $this->setCreatedAt($createdAt);
     }
 
     public function toArray(): array

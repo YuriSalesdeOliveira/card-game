@@ -15,17 +15,20 @@ class Player extends Entity
         Password $password,
         DateTimeInterface $createdAt,
     ) {
-        $this->attributes = [
-            'id' => $id,
-            'email' => $email,
-            'password' => $password,
-            'createdAt' => $createdAt,
-        ];
+        $this->setId($id);
+        $this->setEmail($email);
+        $this->setPassword($password);
+        $this->setCreatedAt($createdAt);
     }
     
     public function toArray(): array
     {
-        return [];
+        return [
+            'id' => (string) $this->getId(),
+            'email' => (string) $this->getEmail(),
+            'password' => (string) $this->getPassword(),
+            'createdAt' => $this->getCreatedAt()
+        ];
     }
     // setters
     public function setId(Identity $id): void

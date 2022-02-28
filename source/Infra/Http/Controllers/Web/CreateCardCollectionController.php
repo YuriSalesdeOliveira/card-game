@@ -20,7 +20,12 @@ class CreateCardCollectionController extends Controller
         $input = new InputBoundary($data['card-collection']);
 
         $output = $this->useCase->handle($input);
-        print_r($output);
+
+        $_SESSION['cardCollections'] = [
+            'player' => $output->getPlayerCardCollection(),
+            'machine' => $output->getMachineCardCollection(),
+        ];
+
         return $response
             ->withHeader('Location', '')
             ->withStatus(303);
