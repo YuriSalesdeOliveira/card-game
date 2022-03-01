@@ -2,17 +2,17 @@
 
 namespace Source\Infra\Http\Controllers\Web;
 
-use Source\App\UseCases\SelectCards\SelectCards;
-use Source\App\UseCases\SelectCards\InputBoundary;
+use Source\App\UseCases\SelectCardCollection\SelectCardCollection;
+use Source\App\UseCases\SelectCardCollection\InputBoundary;
 use Psr\Http\Message\ResponseInterface as Response;
-use Source\Infra\Presentation\SelectCardsPresenter;
+use Source\Infra\Presentation\SelectCardCollectionPresenter;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-class SelectCardsController extends Controller
+class SelectCardCollectionController extends Controller
 {
     public function __construct(
-        private SelectCards $useCase,
-        private SelectCardsPresenter $presenter
+        private SelectCardCollection $useCase,
+        private SelectCardCollectionPresenter $presenter
     ) {}
 
     public function handle(Request $request, Response $response): Response

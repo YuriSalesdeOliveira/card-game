@@ -2,15 +2,15 @@
 
 namespace Source\Infra\Http\Controllers\Web;
 
-use Source\App\UseCases\CreateCardCollection\CreateCardCollection;
+use Source\App\UseCases\StartBattle\StartBattle;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use Source\App\UseCases\CreateCardCollection\InputBoundary;
+use Source\App\UseCases\StartBattle\InputBoundary;
 
-class CreateCardCollectionController extends Controller
+class StartBattleController extends Controller
 {
     public function __construct(
-        private CreateCardCollection $useCase
+        private StartBattle $useCase
     ) {}
 
     public function handle(Request $request, Response $response): Response
@@ -20,11 +20,6 @@ class CreateCardCollectionController extends Controller
         $input = new InputBoundary($data['card-collection']);
 
         $output = $this->useCase->handle($input);
-
-        $_SESSION['cardCollections'] = [
-            'player' => $output->getPlayerCardCollection(),
-            'machine' => $output->getMachineCardCollection(),
-        ];
 
         return $response
             ->withHeader('Location', '')

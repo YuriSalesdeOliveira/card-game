@@ -1,6 +1,6 @@
 <?php
 
-namespace Source\App\UseCases\SelectCards;
+namespace Source\App\UseCases\SelectCardCollection;
 
 class OutputBoundary
 {

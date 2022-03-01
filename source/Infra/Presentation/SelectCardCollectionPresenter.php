@@ -5,7 +5,7 @@ namespace Source\Infra\Presentation;
 use Source\Infra\Http\Controllers\Web\PresenterInterface;
 use Source\Infra\Presentation\Traits\AddTemplateEngineTrait;
 
-class SelectCardsPresenter implements PresenterInterface
+class SelectCardCollectionPresenter implements PresenterInterface
 {
     use AddTemplateEngineTrait;
 
@@ -20,8 +20,8 @@ class SelectCardsPresenter implements PresenterInterface
             array_push($cards, $card);
         }
 
-        return $this->templateEngine->render('selectCards', [
-            'page' => 'Select Cards',
+        return $this->templateEngine->render('selectCardCollection', [
+            'page' => 'Select a Heroes Card Collection',
             'cards' => $cards
         ]);
     }
