@@ -1,6 +1,7 @@
 <?php
 
 use Slim\App;
+use Source\Infra\Http\Controllers\Web\ToBattleController;
 use Source\Infra\Http\Controllers\Web\StartBattleController;
 use Source\Infra\Http\Controllers\Web\StartedBattleController;
 use Source\Infra\Http\Controllers\Web\SelectCardCollectionController;

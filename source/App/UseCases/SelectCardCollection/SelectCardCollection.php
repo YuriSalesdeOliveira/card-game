@@ -18,7 +18,7 @@ class SelectCardCollection
 
     public function handle(InputBoundary $input): OutputBoundary
     {
-        $player = $this->getPlayerRepository->getPlayerById(new Identity($input->getId()));
+        $player = $this->getPlayerRepository->getPlayerById(new Identity($input->getId()));// getPlyerId
 
         $cardIds = $this->getPlayerCardIdsRepository->getPlayerCardIds($player);
 

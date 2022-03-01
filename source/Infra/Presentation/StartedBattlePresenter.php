@@ -13,7 +13,8 @@ class StartedBattlePresenter implements PresenterInterface
     {
         return $this->templateEngine->render('startedBattle', [
             'page' => 'Started Battle',
-            'battle' => $data
+            'battle' => $data['battle'],
+            'route' => $data['route']
         ]);
     }
 }

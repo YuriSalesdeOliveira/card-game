@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <div class="w-[600px] py-5 px-10 mx-auto mt-10 text-slate-800 rounded bg-slate-200">
+    <div class="w-[600px] py-5 px-10 mx-auto mt-10 mb-20 text-slate-800 rounded bg-slate-200">
         <h3 class="font-medium">Prepare-se para a batalha !</h3>
         <p>
             Escolha os 5 melhores herois para lutar em uma batalha.
@@ -16,9 +16,9 @@
                 <div class="card-item">
 
                     <input type="checkbox" name="card-collection[]" id="{{ card.id }}"
-                        value="{{ card.id }}">
+                        value="{{ card.id }}" class="card-item-input">
 
-                    <label for="{{ card.id }}">
+                    <label for="{{ card.id }}" class="card-item-content">
                         <img src="{{ card.image }}" alt="card-image">
                         <ul>
                             <li><span>name:</span> {{ card.name }}</li>

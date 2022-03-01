@@ -3,28 +3,31 @@
 namespace Source\Domain\Entities;
 
 use DomainException;
+use Source\Domain\ValueObjects\Identity;
 
 class CardCollection extends Entity
 {
+    private array $cardCollection;
+
     const NUMBER_OF_CARDS_FOR_BATTLE = 2;
 
     public function __construct(array $cardCollection, bool $countCards = true)
     {   
-        $this->setCollection($cardCollection, $countCards);
+        $this->setCardCollection($cardCollection, $countCards);
     }
 
     public function toArray(): array
     {
         $cardCollection = [];
 
-        foreach ($this->attributes['cardCollection'] as $card) {
+        foreach ($this->cardCollection as $card) {
             $cardCollection[] = $card->toArray();
         }
 
         return $cardCollection;
     }
 
-    public function setCollection(array $cardCollection, bool $countCards = true): void
+    public function setCardCollection(array $cardCollection, bool $countCards = true): void
     {
         foreach ($cardCollection as $card) {
             if (!($card instanceof Card)) {
@@ -40,12 +43,35 @@ class CardCollection extends Entity
             }
         }
         
-        $this->attributes['cardCollection'] = $cardCollection;
+        $this->cardCollection = $cardCollection;
 
     }
 
-    public function getCollection(): array
+    public function getCardById(Identity $cardId): Card
     {
-        return $this->attributes['cardCollection'];
+        foreach ($this->cardCollection as $card) {
+            if ($card->getId() == $cardId) {
+                return $card;
+            }
+        }
+
+        throw new DomainException('The card id is invalid.');
+    }
+
+    public function deleteCardById(Identity $cardId): bool
+    {
+        foreach ($this->cardCollection as $index => $card) {
+            if ($card->getId() == $cardId) {
+                unset($this->cardCollection[$index]);
+                return true;
+            }
+        }
+
+        throw new DomainException('The card id is invalid.');
+    }
+
+    public function getCardCollection(): array
+    {
+        return $this->cardCollection;
     }
 }

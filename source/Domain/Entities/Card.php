@@ -35,6 +35,29 @@ class Card extends Entity
         $this->setCreatedAt($createdAt);
     }
 
+    public static function toCard(array $arrayCards): array
+    {
+        $cards = [];
+
+        foreach ($arrayCards as $card) {
+            $cards[] = new static(
+                Identity::parse($card['id']),
+                new Image($card['image']),// precisa ser parse
+                Name::parse($card['name']),
+                $card['intelligence'],
+                $card['force'],
+                $card['velocity'],
+                $card['resistance'],
+                $card['fighting'],
+                $card['power'],
+                $card['overall'],
+                $card['createdAt']
+            );
+        }
+
+        return $cards;
+    }
+
     public function toArray(): array
     {
         return [

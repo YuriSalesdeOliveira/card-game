@@ -3,29 +3,29 @@
 @tailwind utilities;
 
 .card-group {
-    @apply  w-full grid grid-cols-4 gap-5 justify-between mt-20;
+    @apply  w-full grid grid-cols-4 gap-5 justify-between;
 }
 
-.card-item > input {
+.card-item > .card-item-input {
     @apply hidden;
 }
 
-.card-item > input:checked ~ label {
+.card-item > .card-item-input:checked ~ .card-item-content {
     @apply shadow-lg shadow-cyan-500/50;
 }
 
-.card-item > label {
+.card-item > .card-item-content {
     @apply flex shadow-lg rounded-md overflow-hidden cursor-pointer hover:bg-slate-50;
 }
 
-.card-item label > img {
+.card-item .card-item-content > img {
     @apply w-[150px] h-[265px];
 }
 
-.card-item label > ul {
+.card-item .card-item-content > ul {
     @apply flex flex-col p-3;
 }
 
-.card-item label > ul li {
+.card-item .card-item-content > ul li {
     @apply text-gray-700;
 }

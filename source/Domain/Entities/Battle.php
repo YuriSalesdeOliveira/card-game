@@ -2,7 +2,8 @@
 
 namespace Source\Domain\Entities;
 
-use Source\domain\Entities\Entity;
+use DomainException;
+use Source\Domain\ValueObjects\Identity;
 use Source\Domain\ValueObjects\Status;
 
 class Battle extends Entity
@@ -14,7 +15,8 @@ class Battle extends Entity
         private CardCollection $machineCardCollection,
         private array $roundResults,
         private int $lastRound,
-        private int $round
+        private int $round,
+        private array $lostCards
     ) {
         $this->setStatus(Status::parse(Status::STARTED));
     }
@@ -27,38 +29,49 @@ class Battle extends Entity
             'machineCardCollection' => $this->getMachineCardCollection()->toArray(),
             'roundResults' => $this->getRoundResults(),
             'lastRound' => $this->getLastRound(),
-            'round' => $this->getRound()
+            'round' => $this->getRound(),
+            'lostCards' => $this->getLostCards()
         ];
     }
 
-    public function toBattle(): Battle
+    public function toBattle(Identity $cardId): Battle
     {
-
-        $playerCard = $this->playerCardCollection[$this->round];
-        $machineCard = $this->machineCardCollection[$this->round];
-
-        $sumOverall = $playerCard->getOverall() + $machineCard->getOverall();
-
-        $randNumber = rand(0, $sumOverall);
-
-        if ($randNumber <= $playerCard->getOverall()) {
-            $this->addWinner('player');
-        }
-        
-        if ($randNumber <= $sumOverall) {
-            $this->addWinner('machine');
-        }
-
-        if ($this->getRound() === $this->getLastRound()) {
+        if ($this->getRound() > $this->getLastRound()) {
 
             $this->setStatus(Status::parse(Status::FINISHED));
 
             return $this;
         }
 
+        $playerCard = $this->playerCardCollection->getCardById($cardId);
+        $machineCard = $this->machineCardCollection->getCardCollection()[$this->round - 1];
+
+        $sumOverall = $playerCard->getOverall() + $machineCard->getOverall();
+
+        $randNumber = rand(0, $sumOverall);
+
+        if ($randNumber <= $playerCard->getOverall()) {
+
+            $this->addWinner('player');
+
+        } elseif ($randNumber <= $sumOverall) {
+
+            $this->addWinner('machine');
+
+            $playerCard = $this->playerCardCollection->deleteCardById($cardId);
+
+            $this->addLostCard($cardId);
+
+        }
+
         $this->addRound();
 
         return $this;
+    }
+
+    private function addLostCard(Identity $cardId)
+    {
+        $this->lostCards[] = $cardId;
     }
 
     private function addRound()
@@ -68,9 +81,9 @@ class Battle extends Entity
         return $this->round;
     }
 
-    private function addWinner($winner): void
+    private function addWinner(string $winner): void
     {
-        $this->roundResults[] = [$winner = true];
+        $this->roundResults[] = [$winner => true];
     }
 
     private function setStatus(Status $status): void
@@ -102,5 +115,9 @@ class Battle extends Entity
     public function getRound(): int
     {
         return $this->round;
+    }
+    public function getLostCards(): array
+    {
+        return $this->lostCards;
     }
 }
