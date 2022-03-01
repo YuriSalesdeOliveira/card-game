@@ -10,7 +10,7 @@
         </p>
     </div>
 
-    <form action="http://localhost/cardGame/create/card-collection" method="post">
+    <form action="{{ route.urlFor('startBattle') }}" method="post">
         <div class="card-group">
             {% for card in cards %}
                 <div class="card-item">

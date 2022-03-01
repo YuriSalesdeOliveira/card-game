@@ -2,10 +2,11 @@
 
 namespace Source\Infra\Http\Controllers\Web;
 
+use Slim\Routing\RouteContext;
 use Source\App\UseCases\StartBattle\StartBattle;
+use Source\App\UseCases\StartBattle\InputBoundary;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use Source\App\UseCases\StartBattle\InputBoundary;
 
 class StartBattleController extends Controller
 {
@@ -15,14 +16,19 @@ class StartBattleController extends Controller
 
     public function handle(Request $request, Response $response): Response
     {
+        $routeContext = RouteContext::fromRequest($request);
+        $routeParser = $routeContext->getRouteParser();
+
         $data = $request->getParsedBody();
 
         $input = new InputBoundary($data['card-collection']);
 
         $output = $this->useCase->handle($input);
 
+        $_SESSION['startedBattle'] = $output->getBattle();
+
         return $response
-            ->withHeader('Location', '')
+            ->withHeader('Location', $routeParser->fullUrlFor($request->getUri(), 'startedBattle'))
             ->withStatus(303);
     }
 }
