@@ -28,7 +28,7 @@ class StartBattle
             roundResults: [],
             lastRound: CardCollection::NUMBER_OF_CARDS_FOR_BATTLE,
             round: 1,
-            lostCards: []
+            defeatedCards: []
         );
 
         return new OutputBoundary($battle->toArray());

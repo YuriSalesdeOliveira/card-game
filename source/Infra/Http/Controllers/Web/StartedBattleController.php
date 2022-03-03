@@ -24,7 +24,7 @@ class StartedBattleController extends Controller
                 'route' => $routeParser
             ])
         );
-        
+        // print_r($_SESSION);
         return $response;
     }
 }

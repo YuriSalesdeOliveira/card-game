@@ -47,6 +47,29 @@ class CardCollection extends Entity
 
     }
 
+    public function getRandomCard(array $idsNotAllowed = []): Card
+    {
+        $randomIndex = array_rand($this->cardCollection);
+        $card = $this->cardCollection[$randomIndex];
+
+        if ($idsNotAllowed) {
+
+            foreach ($idsNotAllowed as $idNotAllowed) {
+
+                if (!($idNotAllowed instanceof Identity)) {
+                    throw new DomainException('The elements in idsNotAllowed must be an identity instance.');
+                }
+
+                if ($card->getId() == $idNotAllowed) {
+
+                    return $this->getRandomCard($idsNotAllowed);
+                }
+            }
+        }
+
+        return $card;
+    }
+
     public function getCardById(Identity $cardId): Card
     {
         foreach ($this->cardCollection as $card) {
