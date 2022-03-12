@@ -1,0 +1,9 @@
+{% extends "template/layout.html.twig" %}
+
+{% block content %}
+
+    <div>Round {{ roundResult.round }}</div>
+    <div>Winner: {{ roundResult.winner }}</div>
+    <a href="{{ route.urlFor('startedBattle') }}">next round</a>
+
+{% endblock content %}

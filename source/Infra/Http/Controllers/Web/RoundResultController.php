@@ -2,15 +2,15 @@
 
 namespace Source\Infra\Http\Controllers\Web;
 
-use Slim\Routing\RouteContext;
 use Psr\Http\Message\ResponseInterface as Response;
-use Source\Infra\Presentation\StartedBattlePresenter;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use Source\Infra\Presentation\RoundResultPresenter;
+use Slim\Routing\RouteContext;
 
-class StartedBattleController extends Controller
+class RoundResultController extends Controller
 {
     public function __construct(
-        private StartedBattlePresenter $presenter
+        private RoundResultPresenter $presenter
     ) {}
 
     public function handle(Request $request, Response $response): Response
@@ -20,7 +20,7 @@ class StartedBattleController extends Controller
 
         $response->getBody()->write(
             $this->presenter->output([
-                'battle' => $_SESSION['startedBattle'],
+                'roundResults' => $_SESSION['startedBattle']['roundResults'],
                 'route' => $routeParser
             ])
         );

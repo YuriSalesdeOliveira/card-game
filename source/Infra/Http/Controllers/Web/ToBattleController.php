@@ -31,7 +31,7 @@ class ToBattleController
         $_SESSION['startedBattle'] = $output->getBattle();
 
         return $response
-        ->withHeader('Location', $routeParser->fullUrlFor($request->getUri(), 'startedBattle'))
+        ->withHeader('Location', $routeParser->fullUrlFor($request->getUri(), 'roundResult'))
         ->withStatus(303);
     }
 }

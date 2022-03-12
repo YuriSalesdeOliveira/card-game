@@ -46,15 +46,15 @@ class Battle extends Entity
 
     public function toBattle(Identity $playerCardId): void
     {
-        if ($this->isDefeatedCard('player', $playerCardId)) {
-            throw new DomainException('This card has already been defeated.');
-        }
-
         if ($this->getRound() > $this->getLastRound()) {
 
             $this->setStatus(Status::parse(Status::FINISHED));
 
-            return;
+            throw new DomainException('This battle is over.');
+        }
+
+        if ($this->isDefeatedCard('player', $playerCardId)) {
+            throw new DomainException('This card has already been defeated.');
         }
 
         $defeatedCards = $this->getDefeatedCards();
