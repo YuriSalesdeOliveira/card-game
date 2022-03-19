@@ -10,16 +10,11 @@ use Source\Domain\ValueObjects\Password;
 class Player extends Entity
 {
     public function __construct(
-        Identity $id,
-        Email $email,
-        Password $password,
-        DateTimeInterface $createdAt,
-    ) {
-        $this->setId($id);
-        $this->setEmail($email);
-        $this->setPassword($password);
-        $this->setCreatedAt($createdAt);
-    }
+        private Identity $id,
+        private Email $email,
+        private Password $password,
+        protected DateTimeInterface $createdAt
+    ) {}
     
     public function toArray(): array
     {
@@ -30,30 +25,32 @@ class Player extends Entity
             'createdAt' => $this->getCreatedAt()
         ];
     }
+
     // setters
     public function setId(Identity $id): void
     {
-        $this->attributes['id'] = $id;
+        $this->id = $id;
     }
     public function setEmail(Email $email): void
     {
-        $this->attributes['email'] = $email;
+        $this->email = $email;
     }
     public function setPassword(Password $password): void
     {
-        $this->attributes['password'] = $password;
+        $this->password = $password;
     }
+    
     // getters
     public function getId(): Identity
     {
-        return $this->attributes['id'];
+        return $this->id;
     }
     public function getEmail(): Email
     {
-        return $this->attributes['email'];
+        return $this->email;
     }
     public function getPassword(): Password
     {
-        return $this->attributes['password'];
+        return $this->password;
     }
 }

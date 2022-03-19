@@ -16,17 +16,6 @@ class CardCollection extends Entity
         $this->setCardCollection($cardCollection, $countCards);
     }
 
-    public function toArray(): array
-    {
-        $cardCollection = [];
-
-        foreach ($this->cardCollection as $card) {
-            $cardCollection[] = $card->toArray();
-        }
-
-        return $cardCollection;
-    }
-
     public function setCardCollection(array $cardCollection, bool $countCards = true): void
     {
         foreach ($cardCollection as $card) {
@@ -45,6 +34,17 @@ class CardCollection extends Entity
         
         $this->cardCollection = $cardCollection;
 
+    }
+
+    public function toArray(): array
+    {
+        $cardCollection = [];
+
+        foreach ($this->cardCollection as $card) {
+            $cardCollection[] = $card->toArray();
+        }
+
+        return $cardCollection;
     }
 
     public function getRandomCard(array $idsNotAllowed = []): Card

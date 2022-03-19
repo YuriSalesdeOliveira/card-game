@@ -7,8 +7,10 @@ use DomainException;
 
 abstract class Entity
 {
-    protected array $attributes;
     protected bool $timestamp = true;
+
+    protected DateTimeInterface $createdAt;
+    protected DateTimeInterface $updatedAt;
 
     public function setCreatedAt(DateTimeInterface $createdAt): void
     {
@@ -16,7 +18,7 @@ abstract class Entity
             throw new DomainException('The timestamp is off for that entity.');
         }
 
-        $this->attributes['createdAt'] = $createdAt;
+        $this->createdAt = $createdAt;
     }
     public function setUpdatedAt(DateTimeInterface $updatedAt): void
     {
@@ -24,7 +26,7 @@ abstract class Entity
             throw new DomainException('The timestamp is off for that entity.');
         }
 
-        $this->attributes['updatedAt'] = $updatedAt;
+        $this->updatedAt = $updatedAt;
     }
 
     public function getCreatedAt(): DateTimeInterface
@@ -33,7 +35,11 @@ abstract class Entity
             throw new DomainException('The timestamp is off for that entity.');
         }
 
-        return $this->attributes['createdAt'];
+        if (!isset($this->createdAt)) {
+            throw new DomainException('There is no create date');
+        }
+
+        return $this->createdAt;
     }
     public function getUpdatedAt(): DateTimeInterface
     {
@@ -41,7 +47,16 @@ abstract class Entity
             throw new DomainException('The timestamp is off for that entity.');
         }
 
-        return $this->attributes['updatedAt'];
+        if (!isset($this->updatedAt)) {
+            throw new DomainException('There is no update date');
+        }
+
+        return $this->updatedAt;
+    }
+
+    public function __isset(string $attribute): bool
+    {
+        return isset($this->$attribute);
     }
 
     abstract public function toArray(): array;
