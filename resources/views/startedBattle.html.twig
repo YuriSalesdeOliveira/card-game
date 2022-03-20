@@ -1,14 +1,15 @@
-{% extends "template/layout.html.twig" %}
+{% extends "templates/layout.html.twig" %}
 
 {% block content %}
 
-    <div class="w-[600px] py-5 px-10 mx-auto mt-10 mb-20 text-slate-800 rounded bg-slate-200">
-        <h3 class="font-medium">Chegou a hora !</h3>
-        <p>
-            O desafiante está destacado. Escolha o heroi que irá
-            batalhar a favor da sua equipe.
-        </p>
-    </div>
+    {% set message = {
+        'title': 'Chegou a hora !',
+        'content': 'Você não sabe quem irá enfrentar !
+            Escolha com sabedoria o heroi que irá batalhar a favor da sua equipe.'
+        }
+    %}
+
+    {% include "templates/message.html.twig" with message only %}
 
     <form action="{{ route.urlFor('toBattle') }}" method="post">
         <div class="card-group">

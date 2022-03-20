@@ -1,14 +1,15 @@
-{% extends "template/layout.html.twig" %}
+{% extends "templates/layout.html.twig" %}
 
 {% block content %}
 
-    <div class="w-[600px] py-5 px-10 mx-auto mt-10 mb-20 text-slate-800 rounded bg-slate-200">
-        <h3 class="font-medium">Prepare-se para a batalha !</h3>
-        <p>
-            Escolha os 5 melhores herois para lutar em uma batalha.
-            Você pode conseguir novas cartas se vencer. Boa sorte !
-        </p>
-    </div>
+    {% set message = {
+        'title': 'Prepare-se para a batalha !',
+        'content': 'Escolha os 5 melhores herois para lutar em uma batalha.
+            Você pode conseguir novas cartas se vencer. Boa sorte !'
+        }
+    %}
+
+    {% include "templates/message.html.twig" with message only %}
 
     <form action="{{ route.urlFor('startBattle') }}" method="post">
         <div class="card-group">
