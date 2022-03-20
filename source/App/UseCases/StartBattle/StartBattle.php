@@ -15,9 +15,7 @@ class StartBattle
     public function handle(InputBoundary $input): OutputBoundary
     {
         $playerCards = $this->getCardRepository->getCardsById($input->getCardIds());
-        $machineCards = $this->getCardRepository->getRandomCards(
-            CardCollection::NUMBER_OF_CARDS_FOR_BATTLE
-        );
+        $machineCards = $this->getCardRepository->getRandomCards(Battle::LIMIT_CARDS);
 
         $playerCardCollection = new CardCollection($playerCards);
         $machineCardCollection = new CardCollection($machineCards);
@@ -26,7 +24,7 @@ class StartBattle
             $playerCardCollection,
             $machineCardCollection,
             roundResults: [],
-            lastRound: CardCollection::NUMBER_OF_CARDS_FOR_BATTLE,
+            lastRound: Battle::LIMIT_CARDS,
             round: 1,
             defeatedCards: []
         );

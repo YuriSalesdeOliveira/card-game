@@ -16,13 +16,13 @@ function env(string $key, string $default = ''): string
     return empty($env[$key]) ? $default : $env[$key];
 }
 
-function database(string $key, string $default = ''): string|array
+function database(string $key, string $default = '', string $environment = ''): string|array
 {
     $database = require(dirname(__FILE__) . '/database.php');
 
-    $connection_default = $database['default'];
-    
-    $connection = $database['connections'][$connection_default];
+    $environment = $environment !== '' ? $environment : $database['environment_default'];
+
+    $connection = $database['environments'][$environment];
 
     return empty($connection[$key]) ? $default : $connection[$key];
 }

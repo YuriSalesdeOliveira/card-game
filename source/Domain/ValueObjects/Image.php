@@ -27,8 +27,13 @@ final class Image
 
     private static function validate(string $image): void
     {
-        if (!file_exists($image) || !self::isImage($image)) {
+        if (!file_exists($image)) {
             
+            throw new DomainException('This image does not exist.');
+        }
+
+        if (!self::isImage($image)) {
+
             throw new DomainException('Image is not valid.');
         }
     }

@@ -11,6 +11,8 @@ class Battle extends Entity
     private Status $status;
     private array $defeatedCards = [];
 
+    const LIMIT_CARDS = 2;
+
     public function __construct(
         private CardCollection $playerCardCollection,
         private CardCollection $machineCardCollection,

@@ -25,12 +25,12 @@ class ToBattle
         }
         
         $battle = new Battle(
-            playerCardCollection: new CardCollection($playerCardCollection, false),
-            machineCardCollection: new CardCollection($machineCardCollection, false),
-            roundResults: $inputBattle['roundResults'],
-            lastRound: $inputBattle['lastRound'],
-            round: $inputBattle['round'],
-            defeatedCards: $defeatedCards
+            new CardCollection($playerCardCollection),
+            new CardCollection($machineCardCollection),
+            $inputBattle['roundResults'],
+            $inputBattle['lastRound'],
+            $inputBattle['round'],
+            $defeatedCards
         );
         
         $battle->toBattle(Identity::parse($input->getCardToBattleId()));

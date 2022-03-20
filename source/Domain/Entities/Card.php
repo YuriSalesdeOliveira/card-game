@@ -36,7 +36,7 @@ class Card extends Entity
 
             $cardsAsCardEntity[] = new static(
                 Identity::parse($card['id']),
-                new Image($card['image']),// precisa ser parse
+                new Image($card['image']),
                 Name::parse($card['name']),
                 $card['intelligence'],
                 $card['force'],

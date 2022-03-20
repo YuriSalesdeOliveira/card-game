@@ -5,11 +5,11 @@ namespace Source\App\UseCases\SelectCardCollection;
 class InputBoundary
 {
     public function __construct(
-        private string $id
+        private string $playerId
     ) {}
 
-    public function getId(): string
+    public function getPlayerId(): string
     {
-        return $this->id;
+        return $this->playerId;
     }
 }

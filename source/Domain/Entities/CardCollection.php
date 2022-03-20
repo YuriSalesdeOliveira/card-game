@@ -9,31 +9,28 @@ class CardCollection extends Entity
 {
     private array $cardCollection;
 
-    const NUMBER_OF_CARDS_FOR_BATTLE = 2;
-
-    public function __construct(array $cardCollection, bool $countCards = true)
+    public function __construct(array $cardCollection, int|false $limitCards = false)
     {   
-        $this->setCardCollection($cardCollection, $countCards);
+        $this->setCardCollection($cardCollection, $limitCards);
     }
 
-    public function setCardCollection(array $cardCollection, bool $countCards = true): void
+    public function setCardCollection(array $cardCollection, int|false $limitCards = false): void
     {
+        if ($limitCards) {
+            if (count($cardCollection) !== $limitCards) {
+                throw new DomainException(
+                    sprintf('The number of cards must be equal to %s', $limitCards)
+                );
+            }
+        }
+        
         foreach ($cardCollection as $card) {
             if (!($card instanceof Card)) {
                 throw new DomainException('All cards must be an instance of the card entity.');
             }
         }
-
-        if ($countCards) {
-            if (count($cardCollection) !== static::NUMBER_OF_CARDS_FOR_BATTLE) {
-                throw new DomainException(
-                    sprintf('The number of cards must be equal to %s', static::NUMBER_OF_CARDS_FOR_BATTLE)
-                );
-            }
-        }
         
         $this->cardCollection = $cardCollection;
-
     }
 
     public function toArray(): array

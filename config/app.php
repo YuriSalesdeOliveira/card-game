@@ -3,7 +3,7 @@
 return [
     'site' => [
         'name' => 'cardGame',
-        'description' => 'Jogo de cartas',
+        'description' => 'Jogo de batalha de cartas de herois',
         'domain' => '',
         'locale' => 'pt_BR',
         'root' => 'http://localhost/cardGame',
