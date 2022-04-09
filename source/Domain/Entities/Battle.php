@@ -8,20 +8,18 @@ use Source\Domain\ValueObjects\Identity;
 
 class Battle extends Entity
 {
-    private Status $status;
     private array $defeatedCards = [];
 
-    const LIMIT_CARDS = 2;
+    const LIMIT_ROUNDS = 2;
 
     public function __construct(
+        private Status $status,
         private CardCollection $playerCardCollection,
         private CardCollection $machineCardCollection,
         private array $roundResults,
-        private int $lastRound,
         private int $round,
         array $defeatedCards
     ) {
-        $this->setStatus(Status::parse(Status::STARTED));
         $this->setDefeatedCards($defeatedCards);
     }
 
@@ -36,11 +34,10 @@ class Battle extends Entity
         }
 
         return [
-            'status' => (string) $this->getStatus(),
+            'status' => $this->getStatus()->value(),
             'playerCardCollection' => $this->getPlayerCardCollection()->toArray(),
             'machineCardCollection' => $this->getMachineCardCollection()->toArray(),
             'roundResults' => $this->getRoundResults(),
-            'lastRound' => $this->getLastRound(),
             'round' => $this->getRound(),
             'defeatedCards' => $defeatedCards
         ];
@@ -48,16 +45,15 @@ class Battle extends Entity
 
     public function toBattle(Identity $playerCardId): void
     {
-        if ($this->getRound() > $this->getLastRound()) {
-
-            $this->setStatus(Status::parse(Status::FINISHED));
-
+        if (!$this->status->isStarted()) {
             throw new DomainException('This battle is over.');
         }
 
         if ($this->isDefeatedCard('player', $playerCardId)) {
             throw new DomainException('This card has already been defeated.');
         }
+
+        $this->addRound();
 
         $machineCard = $this->machineCardCollection->getRandomCard($this->getDefeatedCards('machine'));
         
@@ -80,7 +76,9 @@ class Battle extends Entity
             $this->addDefeatedCard('player', $playerCardId);
         }
 
-        $this->addRound();
+        if ($this->getRound() === static::LIMIT_ROUNDS) {
+            $this->setStatus(Status::parse(Status::FINISHED));
+        }
     }
 
     private function isDefeatedCard(string $owner, Identity $cardId): bool
@@ -154,10 +152,6 @@ class Battle extends Entity
     public function getRoundResults(): array
     {
         return $this->roundResults;
-    }
-    public function getLastRound(): int
-    {
-        return $this->lastRound;
     }
     public function getRound(): int
     {

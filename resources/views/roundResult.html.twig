@@ -2,8 +2,10 @@
 
 {% block content %}
 
-    <div>Round {{ roundResult.round }}</div>
-    <div>Winner: {{ roundResult.winner }}</div>
-    <a href="{{ route.urlFor('startedBattle') }}">next round</a>
+    <div class="w-[500px] flex flex-col items-center mt-14 mx-auto">
+        <h1 class="text-lg">Winner {{ roundResult.winner }}</h1>
+        <div>Round {{ roundResult.round }}</div>
+        <a href="{{ route.urlFor('startedBattle') }}" class="button primary">next round</a>
+    </div>
 
 {% endblock content %}

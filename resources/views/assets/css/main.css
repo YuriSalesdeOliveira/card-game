@@ -6,26 +6,34 @@
     @apply  w-full grid grid-cols-4 gap-5 justify-between;
 }
 
-.card-item > .card-item-input {
+.card-group-container > input {
     @apply hidden;
 }
 
-.card-item > .card-item-input:checked ~ .card-item-content {
+.card-group-container > input:checked ~ .card-group-item {
     @apply shadow-lg shadow-cyan-500/50;
 }
 
-.card-item > .card-item-content {
+.card-group-container > .card-group-item {
     @apply flex shadow-lg rounded-md overflow-hidden cursor-pointer hover:bg-slate-50;
 }
 
-.card-item .card-item-content > img {
+.card-group-container .card-group-item > img {
     @apply w-[150px] h-[265px];
 }
 
-.card-item .card-item-content > ul {
+.card-group-container .card-group-item > ul {
     @apply flex flex-col p-3;
 }
 
-.card-item .card-item-content > ul li {
+.card-group-container .card-group-item > ul li {
     @apply text-gray-700;
+}
+
+.button {
+    @apply flex text-sm text-slate-100
+}
+
+.button.primary {
+    @apply  uppercase py-2 px-8 bg-slate-400 rounded hover:bg-slate-500
 }

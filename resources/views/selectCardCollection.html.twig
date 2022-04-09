@@ -1,5 +1,9 @@
 {% extends "templates/layout.html.twig" %}
 
+{% block scripts %}
+    <script src="{{ assets('js/cardGroup.js') }}"></script>
+{% endblock scripts %}
+
 {% block content %}
 
     {% set message = {
@@ -14,13 +18,13 @@
     <form action="{{ route.urlFor('startBattle') }}" method="post">
         <div class="card-group">
             {% for card in cards %}
-                <div class="card-item">
+                <div class="card-group-container">
 
-                    <input type="checkbox" name="card-collection[]" id="{{ card.id }}"
-                        value="{{ card.id }}" class="card-item-input">
+                    <input type="checkbox" name="card-collection[]" data-card-id="{{ card.id }}"
+                        value="{{ card.id }}">
 
-                    <label for="{{ card.id }}" class="card-item-content">
-                        <img src="{{ card.image }}" alt="card-image">
+                    <div data-card-id="{{ card.id }}" class="card-group-item">
+                        <img src="{{ card.image }}" alt="card {{ card.name }}">
                         <ul>
                             <li><span>name:</span> {{ card.name }}</li>
                             <li><span>intelligence:</span> {{ card.intelligence }}</li>
@@ -31,15 +35,13 @@
                             <li><span>power:</span> {{ card.power }}</li>
                             <li><span>overall:</span> {{ card.overall }}</li>
                         </ul>
-                    </label>
+                    </div>
 
                 </div>
             {% endfor %}
         </div>
 
-        <button type="submit"
-            class="flex text-sm text-slate-100 uppercase py-2 px-8 my-10 mx-auto
-                bg-slate-400 rounded hover:bg-slate-500">Start Battle</button>
+        <button type="submit" class="button primary my-10 mx-auto">Start Battle</button>
     </form>
 
 {% endblock content %}

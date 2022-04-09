@@ -6,10 +6,10 @@ use DomainException;
 
 class Status
 {
-    private string $status;
+    private int $status;
     private static array $allowedStatus = [
-        23400 => 'started',
-        23500 => 'finished'
+        23400,
+        23500
     ];
 
     const STARTED = 23400;
@@ -17,7 +17,17 @@ class Status
 
     public function __construct(int $status)
     {
-        $this->status = self::$allowedStatus[$status];
+        $this->status = $status;
+    }
+
+    public function isStarted(): bool
+    {
+        return $this->status === self::STARTED ? true : false;
+    }
+
+    public function isFinished(): bool
+    {
+        return $this->status === self::FINISHED ? true : false;
     }
 
     public static function parse(int $status): Status
@@ -29,9 +39,14 @@ class Status
 
     private static function validate(int $status): void
     {
-        if (!array_key_exists($status, self::$allowedStatus)) {
+        if (!in_array($status, self::$allowedStatus)) {
             throw new DomainException('Status is not valid.');
         }
+    }
+
+    public function value(): int
+    {
+        return $this->status;
     }
 
     public function __toString(): string

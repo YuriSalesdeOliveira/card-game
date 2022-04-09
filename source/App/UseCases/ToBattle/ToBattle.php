@@ -6,6 +6,7 @@ use Source\Domain\Entities\Card;
 use Source\Domain\Entities\Battle;
 use Source\Domain\Entities\CardCollection;
 use Source\Domain\ValueObjects\Identity;
+use Source\Domain\ValueObjects\Status;
 
 class ToBattle
 {
@@ -23,12 +24,12 @@ class ToBattle
                 $defeatedCards[$owner][] = new Identity($cardId);
             }
         }
-        
+
         $battle = new Battle(
+            Status::parse($inputBattle['status']),
             new CardCollection($playerCardCollection),
             new CardCollection($machineCardCollection),
             $inputBattle['roundResults'],
-            $inputBattle['lastRound'],
             $inputBattle['round'],
             $defeatedCards
         );
