@@ -20,7 +20,7 @@ class RoundResultController extends Controller
 
         $response->getBody()->write(
             $this->presenter->output([
-                'roundResults' => $_SESSION['startedBattle']['roundResults'],
+                'startedBattle' => $_SESSION['startedBattle'],
                 'route' => $routeParser
             ])
         );

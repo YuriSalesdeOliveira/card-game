@@ -3,9 +3,14 @@
 {% block content %}
 
     <div class="w-[500px] flex flex-col items-center mt-14 mx-auto">
-        <h1 class="text-lg">Winner {{ roundResult.winner }}</h1>
-        <div>Round {{ roundResult.round }}</div>
-        <a href="{{ route.urlFor('startedBattle') }}" class="button primary">next round</a>
+        <h1 class="text-lg">{{ winner|capitalize }} wins</h1>
+        <div>Round {{ round }}</div>
+        {{status}}
+        {% if status == 'finished' %}
+            <a href="{{ route.urlFor('selectCardCollection') }}" class="button primary">next battle</a>
+        {% else %}
+            <a href="{{ route.urlFor('startedBattle') }}" class="button primary">next round</a>
+        {% endif %}
     </div>
 
 {% endblock content %}

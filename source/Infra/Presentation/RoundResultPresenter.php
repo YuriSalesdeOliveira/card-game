@@ -11,11 +11,16 @@ class RoundResultPresenter implements PresenterInterface
 
     public function output(array $data): string
     {
-        $roundResult = end($data['roundResults']);
+        $startedBattle = $data['startedBattle'];
+        $roundResults = $startedBattle['roundResults'];
+
+        $lastRoundResult = end($roundResults);
 
         return $this->templateEngine->render('roundResult', [
             'page' => 'Round Result',
-            'roundResult' => $roundResult,
+            'winner' => $lastRoundResult['winner'],
+            'round' => $lastRoundResult['round'],
+            'status' => $startedBattle['status'],
             'route' => $data['route']
         ]);
     }
