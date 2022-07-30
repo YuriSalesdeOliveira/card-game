@@ -17,11 +17,11 @@ class ToBattle
         $playerCardCollection = Card::toCard($inputBattle['playerCardCollection']);
         $machineCardCollection = Card::toCard($inputBattle['machineCardCollection']);
 
-        $defeatedCards = [];
+        $defeatedCardIds = [];
 
-        foreach ($inputBattle['defeatedCards'] as $owner => $cardIds) {
+        foreach ($inputBattle['defeatedCardIds'] as $owner => $cardIds) {
             foreach ($cardIds as $cardId) {
-                $defeatedCards[$owner][] = new Identity($cardId);
+                $defeatedCardIds[$owner][] = new Identity($cardId);
             }
         }
 
@@ -29,9 +29,9 @@ class ToBattle
             Status::parse($inputBattle['status']),
             new CardCollection($playerCardCollection),
             new CardCollection($machineCardCollection),
-            $inputBattle['roundResults'],
+            $inputBattle['resultOfRounds'],
             $inputBattle['round'],
-            $defeatedCards
+            $defeatedCardIds
         );
         
         $battle->toBattle(Identity::parse($input->getCardToBattleId()));

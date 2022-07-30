@@ -25,9 +25,9 @@ class StartBattle
             Status::parse(Status::STARTED),
             $playerCardCollection,
             $machineCardCollection,
-            roundResults: [],
+            resultOfRounds: [],
             round: 0,
-            defeatedCards: []
+            defeatedCardIds: []
         );
 
         return new OutputBoundary($battle->toArray());
