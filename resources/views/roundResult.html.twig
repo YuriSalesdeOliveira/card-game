@@ -7,7 +7,7 @@
         <div>Round {{ round }}</div>
 
         {% if status == 23500 %}
-            <a href="{{ route.urlFor('selectCardCollection') }}" class="button primary">next battle</a>
+            <a href="{{ route.urlFor('battleResult') }}" class="button primary">battle result</a>
         {% else %}
             <a href="{{ route.urlFor('startedBattle') }}" class="button primary">next round</a>
         {% endif %}

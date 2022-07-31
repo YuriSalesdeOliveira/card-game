@@ -1,0 +1,13 @@
+{% extends "templates/layout.html.twig" %}
+
+{% block content %}
+
+    <div class="w-[500px] flex flex-col items-center mt-14 mx-auto">
+        <h1 class="text-lg">{{ battleWinner|capitalize }} Wins</h1>
+        <p>{{ message }}</p>
+
+        <a href="{{ route.urlFor('selectCardCollection') }}" class="button primary">finish</a>
+
+    </div>
+
+{% endblock content %}

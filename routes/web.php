@@ -1,6 +1,7 @@
 <?php
 
 use Slim\App;
+use Source\Infra\Http\Controllers\Web\BattleResultController;
 use Source\Infra\Http\Controllers\Web\RoundResultController;
 use Source\Infra\Http\Controllers\Web\ToBattleController;
 use Source\Infra\Http\Controllers\Web\StartBattleController;
@@ -33,5 +34,10 @@ return function (App $app) {
         '/round-result',
         [RoundResultController::class, 'handle']
     )->setName('roundResult');
+
+    $app->get(
+        '/battle-result',
+        [BattleResultController::class, 'handle']
+    )->setName('battleResult');
 
 };

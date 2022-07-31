@@ -32,7 +32,7 @@ class Battle extends Entity
             }
         }
 
-        return [
+        $battleToArray = [
             'status' => $this->getStatus()->value(),
             'playerCardCollection' => $this->getPlayerCardCollection()->toArray(),
             'machineCardCollection' => $this->getMachineCardCollection()->toArray(),
@@ -40,6 +40,12 @@ class Battle extends Entity
             'round' => $this->getRound(),
             'defeatedCardIds' => $defeatedCardIds
         ];
+
+        if ($this->getStatus()->value() === Status::FINISHED) {
+            $battleToArray['battleWinner'] = $this->getBattleWinner();
+        }
+
+        return $battleToArray;
     }
 
     public function toBattle(Identity $playerCardId): void
@@ -79,8 +85,8 @@ class Battle extends Entity
             $this->setStatus(Status::parse(Status::FINISHED));
         }
     }
-
-    public function getBattleWinner()
+    // Danger: melhorar logica e retorno para ter mais informacoes
+    public function getBattleWinner(): string
     {
         if ($this->getStatus()->value() !== Status::FINISHED) {
             throw new DomainException(
@@ -91,7 +97,7 @@ class Battle extends Entity
         $player = 0;
         $machine = 0;
 
-        foreach ($this->resultOfRounds as $resultOfRound) {
+        foreach ($this->getResultOfRounds() as $resultOfRound) {
 
             $roundWinner = $resultOfRound['roundWinner'];
 
@@ -110,9 +116,11 @@ class Battle extends Entity
 
     private function isDefeatedCard(string $owner, Identity $cardId): bool
     {
-        if (isset($this->defeatedCardIds[$owner])) {
+        $defeatedCardIds = $this->getDefeatedCardIds();
 
-            if (in_array($cardId, $this->defeatedCardIds[$owner])) {
+        if (isset($defeatedCardIds[$owner])) {
+
+            if (in_array($cardId, $defeatedCardIds[$owner])) {
                 return true;
             }
         }

@@ -14,12 +14,14 @@ class StartBattle
     ) {}
 
     public function handle(InputBoundary $input): OutputBoundary
-    {
-        $playerCards = $this->getCardRepository->getCardsById($input->getCardIds());
-        $machineCards = $this->getCardRepository->getRandomCards(Battle::LIMIT_ROUNDS);
+    {   // Warning: melhorar nome dessa variavel
+        $numberOfCardsForBattle = Battle::LIMIT_ROUNDS;
 
-        $playerCardCollection = new CardCollection($playerCards);
-        $machineCardCollection = new CardCollection($machineCards);
+        $playerCards = $this->getCardRepository->getCardsById($input->getCardIds());
+        $machineCards = $this->getCardRepository->getRandomCards($numberOfCardsForBattle);
+
+        $playerCardCollection = new CardCollection($playerCards, $numberOfCardsForBattle);
+        $machineCardCollection = new CardCollection($machineCards, $numberOfCardsForBattle);
 
         $battle = new Battle(
             Status::parse(Status::STARTED),

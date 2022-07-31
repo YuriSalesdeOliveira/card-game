@@ -33,8 +33,11 @@ class ToBattle
             $inputBattle['round'],
             $defeatedCardIds
         );
-        
-        $battle->toBattle(Identity::parse($input->getCardToBattleId()));
+
+        if ($battle->getStatus()->value() !== Status::FINISHED) {
+
+            $battle->toBattle(Identity::parse($input->getCardToBattleId()));
+        }
 
         return new OutputBoundary($battle->toArray());
     }
