@@ -30,8 +30,8 @@ class PlayerRepository implements GetPlayerRepositoryInterface, GetPlayerCardIds
             '16404025c29660241cbbdebcfcbb281f'
         ]
     ];
-    
-    public function getPlayerById(Identity $id): Player
+
+    public function getPlayerById(Identity $id): Player|false
     {
         foreach ($this->players as $player) {
             
@@ -45,15 +45,26 @@ class PlayerRepository implements GetPlayerRepositoryInterface, GetPlayerCardIds
                 );
             }
         }
+
+        return false;
     }
 
-    public function getPlayerCardIds(Player $player): array
+    public function getPlayerCardIds(Player $player): array|false
     {
         foreach ($this->playerCardIds as $playerId => $cardIds) {
 
             if ($playerId === $player->getId()->value()) {
-                return $cardIds;
+
+                $cardIdsAsIdentity = [];
+
+                foreach ($cardIds as $cardId) {
+                    $cardIdsAsIdentity[] = Identity::parse($cardId);
+                }
+
+                return $cardIdsAsIdentity;
             }
         }
+
+        return false;
     }
 }

@@ -5,6 +5,7 @@ namespace Source\App\UseCases\StartBattle;
 use Source\Domain\Entities\Battle;
 use Source\Domain\Entities\CardCollection;
 use Source\Domain\Repositories\GetCardRepositoryInterface;
+use Source\Domain\ValueObjects\Identity;
 use Source\Domain\ValueObjects\Status;
 
 class StartBattle
@@ -17,7 +18,9 @@ class StartBattle
     {   // Warning: melhorar nome dessa variavel
         $numberOfCardsForBattle = Battle::LIMIT_ROUNDS;
 
-        $playerCards = $this->getCardRepository->getCardsById($input->getCardIds());
+        $cardIds = Identity::parseAll($input->getCardIds());
+
+        $playerCards = $this->getCardRepository->getCardsById($cardIds);
         $machineCards = $this->getCardRepository->getRandomCards($numberOfCardsForBattle);
 
         $playerCardCollection = new CardCollection($playerCards, $numberOfCardsForBattle);

@@ -6,5 +6,5 @@ use Source\Domain\Entities\Player;
 
 interface GetPlayerCardIdsRepositoryInterface
 {
-    public function getPlayerCardIds(Player $player): array;
+    public function getPlayerCardIds(Player $player): array|false;
 }

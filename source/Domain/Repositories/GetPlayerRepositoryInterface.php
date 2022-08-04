@@ -7,5 +7,5 @@ use Source\Domain\ValueObjects\Identity;
 
 interface GetPlayerRepositoryInterface
 {
-    public function getPlayerById(Identity $id): Player;
+    public function getPlayerById(Identity $id): Player|false;
 }

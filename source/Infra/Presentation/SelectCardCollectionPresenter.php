@@ -18,7 +18,7 @@ class SelectCardCollectionPresenter implements PresenterInterface
             
             unset($card['createdAt']);
 
-            array_push($cards, $card);
+            $cards[] = $card;
         }
 
         return $this->templateEngine->render('selectCardCollection', [

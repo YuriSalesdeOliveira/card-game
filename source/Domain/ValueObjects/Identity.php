@@ -25,6 +25,17 @@ final class Identity
         return new self($identity);
     }
 
+    public static function parseAll(array $identities): array
+    {
+        $parsedIdentities = [];
+
+       foreach ($identities as $identity) {
+           $parsedIdentities[] = self::parse($identity);
+       }
+
+       return $parsedIdentities;
+    }
+
     public static function generate(): Identity
     {
         $identity = md5(uniqid());

@@ -3,6 +3,7 @@
 namespace Source\Infra\Repositories\Memory;
 
 use DateTimeImmutable;
+use DomainException;
 use Source\Domain\Entities\Card;
 use Source\Domain\ValueObjects\Name;
 use Source\Domain\ValueObjects\Image;
@@ -79,7 +80,7 @@ class CardRepository implements GetCardRepositoryInterface
         ],
     ];
 
-    public function getCardById(Identity $id): Card
+    public function getCardById(Identity $id): Card|false
     {
         foreach ($this->cards as $card) {
             if ($card['id'] === $id->value()) { 
@@ -98,14 +99,27 @@ class CardRepository implements GetCardRepositoryInterface
                 );
             }
         }
+
+        return false;
     }
 
     public function getCardsById(array $ids): array
     {
+        foreach ($ids as $id) {
+            if (!($id instanceof Identity)) {
+                throw new DomainException(
+                    'All ids must be an instance of Identity.'
+                );
+            }
+        }
+
         $cards = [];
         
         foreach ($ids as $id) {
-            $cards[] = $this->getCardById(new Identity($id));
+
+            $card = $this->getCardById(new Identity($id));
+
+            if ($card instanceof Card) { $cards[] = $card; }
         }
 
         return $cards;
@@ -118,9 +132,9 @@ class CardRepository implements GetCardRepositoryInterface
         $cardIds = [];
 
         foreach ($cardIndexes as $index) {
-            $cardIds[] = $this->cards[$index]['id'];
+            $cardIds[] = Identity::parse($this->cards[$index]['id']);
         }
-        
+
         $cards = $this->getCardsById($cardIds);
 
         return $cards;

@@ -7,7 +7,7 @@ use Source\Domain\ValueObjects\Identity;
 
 interface GetCardRepositoryInterface
 {
-    public function getCardById(Identity $id): Card;
+    public function getCardById(Identity $id): Card|false;
     public function getCardsById(array $ids): array;
     public function getRandomCards(int $limit): array;
 }
