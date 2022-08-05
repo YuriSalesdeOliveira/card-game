@@ -40,7 +40,7 @@ final class Image
 
     private static function isImage(string $image): bool
     {
-        if (!static::allowedImageTypes($image)) { return false; }
+        if (!self::allowedImageTypes($image)) { return false; }
 
         $allowed_types = [
             IMAGETYPE_JPEG,

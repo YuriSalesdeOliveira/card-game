@@ -22,12 +22,12 @@ class Status
 
     public function isStarted(): bool
     {
-        return $this->status === self::STARTED ? true : false;
+        return $this->status === self::STARTED;
     }
 
     public function isFinished(): bool
     {
-        return $this->status === self::FINISHED ? true : false;
+        return $this->status === self::FINISHED;
     }
 
     public static function parse(int $status): Status
