@@ -1,6 +1,6 @@
 <?php
 
-namespace Source\Domain\Repositories;
+namespace Source\Domain\Repositories\Player;
 
 use Source\Domain\Entities\Player;
 use Source\Domain\ValueObjects\Identity;

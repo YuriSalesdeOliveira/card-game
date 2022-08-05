@@ -1,6 +1,6 @@
 <?php
 
-namespace Source\Domain\Repositories;
+namespace Source\Domain\Repositories\Card;
 
 use Source\Domain\Entities\Card;
 use Source\Domain\ValueObjects\Identity;

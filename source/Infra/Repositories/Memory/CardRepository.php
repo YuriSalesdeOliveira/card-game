@@ -8,7 +8,7 @@ use Source\Domain\Entities\Card;
 use Source\Domain\ValueObjects\Name;
 use Source\Domain\ValueObjects\Image;
 use Source\Domain\ValueObjects\Identity;
-use Source\Domain\Repositories\GetCardRepositoryInterface;
+use Source\Domain\Repositories\Card\GetCardRepositoryInterface;
 
 class CardRepository implements GetCardRepositoryInterface
 {

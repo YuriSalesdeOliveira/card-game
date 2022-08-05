@@ -5,9 +5,9 @@ namespace Source\App\UseCases\SelectCardCollection;
 use Source\Domain\Entities\Battle;
 use Source\Domain\Entities\CardCollection;
 use Source\Domain\ValueObjects\Identity;
-use Source\Domain\Repositories\GetCardRepositoryInterface;
-use Source\Domain\Repositories\GetPlayerRepositoryInterface;
-use Source\Domain\Repositories\GetPlayerCardIdsRepositoryInterface;
+use Source\Domain\Repositories\Card\GetCardRepositoryInterface;
+use Source\Domain\Repositories\Player\GetPlayerRepositoryInterface;
+use Source\Domain\Repositories\Player\GetPlayerCardIdsRepositoryInterface;
 
 class SelectCardCollection
 {

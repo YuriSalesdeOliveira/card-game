@@ -4,7 +4,7 @@ namespace Source\App\UseCases\StartBattle;
 
 use Source\Domain\Entities\Battle;
 use Source\Domain\Entities\CardCollection;
-use Source\Domain\Repositories\GetCardRepositoryInterface;
+use Source\Domain\Repositories\Card\GetCardRepositoryInterface;
 use Source\Domain\ValueObjects\Identity;
 use Source\Domain\ValueObjects\Status;
 

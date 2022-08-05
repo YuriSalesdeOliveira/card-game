@@ -7,8 +7,8 @@ use Source\Domain\Entities\Player;
 use Source\Domain\ValueObjects\Email;
 use Source\Domain\ValueObjects\Identity;
 use Source\Domain\ValueObjects\Password;
-use Source\Domain\Repositories\GetPlayerRepositoryInterface;
-use Source\Domain\Repositories\GetPlayerCardIdsRepositoryInterface;
+use Source\Domain\Repositories\Player\GetPlayerRepositoryInterface;
+use Source\Domain\Repositories\Player\GetPlayerCardIdsRepositoryInterface;
 
 class PlayerRepository implements GetPlayerRepositoryInterface, GetPlayerCardIdsRepositoryInterface
 {
