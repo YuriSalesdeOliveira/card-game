@@ -9,13 +9,15 @@ use Source\Domain\Repositories\Card\GetCardRepositoryInterface;
 use Source\Domain\Repositories\Player\GetPlayerRepositoryInterface;
 use Source\Domain\Repositories\Player\GetPlayerCardIdsRepositoryInterface;
 
-class SelectCardCollection
+readonly class SelectCardCollection
 {
     public function __construct(
-        private GetPlayerRepositoryInterface $getPlayerRepository,
+        private GetPlayerRepositoryInterface        $getPlayerRepository,
         private GetPlayerCardIdsRepositoryInterface $getPlayerCardIdsRepository,
-        private GetCardRepositoryInterface $getCardRepository
-    ) {}
+        private GetCardRepositoryInterface          $getCardRepository
+    )
+    {
+    }
 
     public function handle(InputBoundary $input): OutputBoundary
     {
@@ -24,7 +26,7 @@ class SelectCardCollection
         $cardIds = $this->getPlayerCardIdsRepository->getPlayerCardIds($player);
 
         $cards = $this->getCardRepository->getCardsById($cardIds);
-        
+
         $cardCollection = new CardCollection($cards);
 
         return new OutputBoundary($cardCollection->toArray());

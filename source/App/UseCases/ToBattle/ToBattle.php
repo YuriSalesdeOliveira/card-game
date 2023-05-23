@@ -6,7 +6,6 @@ use Source\Domain\Entities\Card;
 use Source\Domain\Entities\Battle;
 use Source\Domain\Entities\CardCollection;
 use Source\Domain\ValueObjects\Identity;
-use Source\Domain\ValueObjects\Status;
 
 class ToBattle
 {
@@ -26,7 +25,7 @@ class ToBattle
         }
 
         $battle = new Battle(
-            Status::parse($inputBattle['status']),
+            $inputBattle['statusBattle'], // Nao pode ficar assim, preciso fazer parse desse objeto vindo de fora
             new CardCollection($playerCardCollection),
             new CardCollection($machineCardCollection),
             $inputBattle['resultOfRounds'],
@@ -34,7 +33,7 @@ class ToBattle
             $defeatedCardIds
         );
 
-        if ($battle->getStatus()->value() !== Status::FINISHED) {
+        if (!$battle->getStatusBattle()->isFinished()) {
 
             $battle->toBattle(Identity::parse($input->getCardToBattleId()));
         }

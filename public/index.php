@@ -1,11 +1,11 @@
 <?php
 
-ob_start();
-session_start();
-
 use Slim\Factory\AppFactory;
 
 require_once(dirname(__DIR__) . '/vendor/autoload.php');
+
+ob_start();
+session_start();
 
 $container = require(path('config') . '/container.php');
 AppFactory::setContainer($container);

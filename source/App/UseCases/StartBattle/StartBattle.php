@@ -4,11 +4,11 @@ namespace Source\App\UseCases\StartBattle;
 
 use Source\Domain\Entities\Battle;
 use Source\Domain\Entities\CardCollection;
+use Source\Domain\Enums\StatusBattle;
 use Source\Domain\Repositories\Card\GetCardRepositoryInterface;
 use Source\Domain\ValueObjects\Identity;
-use Source\Domain\ValueObjects\Status;
 
-class StartBattle
+readonly class StartBattle
 {
     public function __construct(
         private GetCardRepositoryInterface $getCardRepository
@@ -27,7 +27,7 @@ class StartBattle
         $machineCardCollection = new CardCollection($machineCards, $numberOfCardsForBattle);
 
         $battle = new Battle(
-            Status::parse(Status::STARTED),
+            StatusBattle::STARTED,
             $playerCardCollection,
             $machineCardCollection,
             resultOfRounds: [],

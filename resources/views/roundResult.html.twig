@@ -6,7 +6,7 @@
         <h1 class="text-lg">{{ roundWinner|capitalize }} wins</h1>
         <div>Round {{ round }}</div>
 
-        {% if status == 23500 %}
+        {% if statusBattle.isFinished() %}
             <a href="{{ route.urlFor('battleResult') }}" class="button primary">battle result</a>
         {% else %}
             <a href="{{ route.urlFor('startedBattle') }}" class="button primary">next round</a>

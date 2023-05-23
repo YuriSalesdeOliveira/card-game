@@ -3,7 +3,7 @@
 namespace Source\Domain\Entities;
 
 use DomainException;
-use Source\Domain\ValueObjects\Status;
+use Source\Domain\Enums\StatusBattle;
 use Source\Domain\ValueObjects\Identity;
 
 class Battle extends Entity
@@ -11,12 +11,12 @@ class Battle extends Entity
     const LIMIT_ROUNDS = 3;
 
     public function __construct(
-        private Status         $status,
-        private CardCollection $playerCardCollection,
-        private CardCollection $machineCardCollection,
-        private array          $resultOfRounds,
-        private int            $round,
-        private array          $defeatedCardIds
+        private StatusBattle            $statusBattle,
+        private readonly CardCollection $playerCardCollection,
+        private readonly CardCollection $machineCardCollection,
+        private array                   $resultOfRounds,
+        private int                     $round,
+        private array                   $defeatedCardIds
     )
     {
         $this->parseDefeatedCardIds($this->defeatedCardIds);
@@ -33,7 +33,7 @@ class Battle extends Entity
         }
 
         $battleToArray = [
-            'status' => $this->getStatus()->value(),
+            'statusBattle' => $this->getStatusBattle(),
             'playerCardCollection' => $this->getPlayerCardCollection()->toArray(),
             'machineCardCollection' => $this->getMachineCardCollection()->toArray(),
             'resultOfRounds' => $this->getResultOfRounds(),
@@ -41,7 +41,7 @@ class Battle extends Entity
             'defeatedCardIds' => $defeatedCardIds
         ];
 
-        if ($this->getStatus()->value() === Status::FINISHED) {
+        if ($this->getStatusBattle()->isFinished()) {
             $battleToArray['battleWinner'] = $this->getBattleWinner();
         }
 
@@ -50,7 +50,7 @@ class Battle extends Entity
 
     public function toBattle(Identity $playerCardId): void
     {
-        if (!$this->status->isStarted()) {
+        if ($this->getStatusBattle()->isFinished()) {
             throw new DomainException('This battle is over.');
         }
 
@@ -73,7 +73,6 @@ class Battle extends Entity
             $this->addRoundWinner('player');
 
             $this->addDefeatedCard('machine', $machineCard->getId());
-
         } elseif ($randNumber <= $sumOverall) {
 
             $this->addRoundWinner('machine');
@@ -82,36 +81,30 @@ class Battle extends Entity
         }
 
         if ($this->getRound() === static::LIMIT_ROUNDS) {
-            $this->setStatus(Status::parse(Status::FINISHED));
+            $this->setStatusBattle(StatusBattle::FINISHED);
         }
     }
+
     // Danger: melhorar logica e retorno para ter mais informacoes
     public function getBattleWinner(): string
     {
-        if ($this->getStatus()->value() !== Status::FINISHED) {
+        if (!$this->getStatusBattle()->isFinished()) {
             throw new DomainException(
                 'It is not possible to get a winner before the battle is over.'
             );
         }
 
-        $player = 0;
-        $machine = 0;
+        $roundWinnerResults = array_column($this->getResultOfRounds(), 'roundWinner');
+        ['player' => $playerResult, 'machine' => $machineResult] = array_count_values($roundWinnerResults);
 
-        foreach ($this->getResultOfRounds() as $resultOfRound) {
-
-            $roundWinner = $resultOfRound['roundWinner'];
-
-            switch ($roundWinner) {
-                case 'player':
-                    $player++;
-                    break;
-                case 'machine':
-                    $machine++;
-                    break;
-            }
+        if ($playerResult === $machineResult) {
+            return 'nobody';
         }
 
-        return $player > $machine ? 'player' : 'machine';
+        return match (max($playerResult, $machineResult)) {
+            $playerResult => 'player',
+            $machineResult => 'machine',
+        };
     }
 
     private function isDefeatedCard(string $owner, Identity $cardId): bool
@@ -128,7 +121,7 @@ class Battle extends Entity
         return false;
     }
 
-    private function addDefeatedCard(string $owner, Identity $cardId)
+    private function addDefeatedCard(string $owner, Identity $cardId): void
     {
         $this->defeatedCardIds[$owner][] = $cardId;
     }
@@ -169,16 +162,16 @@ class Battle extends Entity
         }
     }
 
-    // settters
-    private function setStatus(Status $status): void
+    // setters
+    private function setStatusBattle(StatusBattle $statusBattle): void
     {
-        $this->status = $status;
+        $this->statusBattle = $statusBattle;
     }
 
     //getters
-    public function getStatus(): Status
+    public function getStatusBattle(): StatusBattle
     {
-        return $this->status;
+        return $this->statusBattle;
     }
 
     public function getPlayerCardCollection(): CardCollection
@@ -207,7 +200,7 @@ class Battle extends Entity
 
         if ($owner) {
 
-            return isset($defeatedCardIds[$owner]) ? $defeatedCardIds[$owner] : [];
+            return $defeatedCardIds[$owner] ?? [];
         }
 
         return $defeatedCardIds;

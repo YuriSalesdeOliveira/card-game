@@ -7,47 +7,57 @@ use Source\Domain\ValueObjects\Identity;
 
 class CardCollection extends Entity
 {
-    private array $cardCollection;
+    private array $cards;
 
-    public function __construct(array $cardCollection, int|false $limitCards = false)
-    {   
-        $this->setCardCollection($cardCollection, $limitCards);
+    public function __construct(
+        array                      $cards,
+        private readonly int|false $numberOfCards = false
+    )
+    {
+        $this->setCards($cards);
     }
 
-    public function setCardCollection(array $cardCollection, int|false $limitCards = false): void
+    public function setCards(array $cards): void
     {
-        if ($limitCards) {
-            if (count($cardCollection) !== $limitCards) {
+        $this->parseCards($cards);
+
+        $this->cards = $cards;
+    }
+
+    private function parseCards(array $cards): void
+    {
+        $numberOfCards = $this->numberOfCards;
+
+        if ($numberOfCards) {
+            if (count($cards) !== $numberOfCards) {
                 throw new DomainException(
-                    sprintf('The number of cards must be equal to %s', $limitCards)
+                    sprintf('The number of cards must be equal to %s', $numberOfCards)
                 );
             }
         }
-        
-        foreach ($cardCollection as $card) {
+
+        foreach ($cards as $card) {
             if (!($card instanceof Card)) {
                 throw new DomainException('All cards must be an instance of the card entity.');
             }
         }
-        
-        $this->cardCollection = $cardCollection;
     }
 
     public function toArray(): array
     {
-        $cardCollection = [];
+        $cards = [];
 
-        foreach ($this->cardCollection as $card) {
-            $cardCollection[] = $card->toArray();
+        foreach ($this->cards as $card) {
+            $cards[] = $card->toArray();
         }
 
-        return $cardCollection;
+        return $cards;
     }
 
     public function getRandomCard(array $idsNotAllowed = []): Card
     {
-        $randomIndex = array_rand($this->cardCollection);
-        $card = $this->cardCollection[$randomIndex];
+        $randomIndex = array_rand($this->cards);
+        $card = $this->cards[$randomIndex];
 
         if ($idsNotAllowed) {
 
@@ -69,7 +79,7 @@ class CardCollection extends Entity
 
     public function getCardById(Identity $cardId): Card
     {
-        foreach ($this->cardCollection as $card) {
+        foreach ($this->cards as $card) {
             if ($card->getId() == $cardId) {
                 return $card;
             }
@@ -78,20 +88,15 @@ class CardCollection extends Entity
         throw new DomainException('The card id is invalid.');
     }
 
-    public function deleteCardById(Identity $cardId): bool
+    public function removeCardById(Identity $cardId): bool
     {
-        foreach ($this->cardCollection as $index => $card) {
+        foreach ($this->cards as $index => $card) {
             if ($card->getId() == $cardId) {
-                unset($this->cardCollection[$index]);
+                unset($this->cards[$index]);
                 return true;
             }
         }
 
         throw new DomainException('The card id is invalid.');
-    }
-
-    public function getCardCollection(): array
-    {
-        return $this->cardCollection;
     }
 }
