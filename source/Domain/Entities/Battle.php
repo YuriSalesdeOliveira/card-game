@@ -168,7 +168,7 @@ class Battle extends Entity
         $this->statusBattle = $statusBattle;
     }
 
-    //getters
+    // getters
     public function getStatusBattle(): StatusBattle
     {
         return $this->statusBattle;
