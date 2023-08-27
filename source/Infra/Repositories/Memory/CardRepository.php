@@ -15,8 +15,8 @@ class CardRepository implements GetCardRepositoryInterface
     private array $cards = [
         [
             'id' => '92216f3a776a0365fc24fcf2d88dfe21',
-            'image' => 'http://localhost/cardGame/assets/images/cards/blackPanther.png',
-            'name' => 'Wolverine',
+            'image' => 'http://localhost/cardGame/assets/images/cards/CaptainAmerica.jpeg',
+            'name' => 'Captain America',
             'intelligence' => 45,
             'force' => 50,
             'velocity' => 50,
@@ -28,8 +28,8 @@ class CardRepository implements GetCardRepositoryInterface
         ],
         [
             'id' => 'c6c6b47581155db3b410b5de404a7755',
-            'image' => 'http://localhost/cardGame/assets/images/cards/nightcrawler.jpeg',
-            'name' => 'Wolverine',
+            'image' => 'http://localhost/cardGame/assets/images/cards/IronMan.jpeg',
+            'name' => 'Iron Man',
             'intelligence' => 45,
             'force' => 50,
             'velocity' => 50,
@@ -41,8 +41,8 @@ class CardRepository implements GetCardRepositoryInterface
         ],
         [
             'id' => '38d1ef4371fecfc1df5ab7cd895ffab9',
-            'image' => 'http://localhost/cardGame/assets/images/cards/mysterio.jpeg',
-            'name' => 'Wolverine',
+            'image' => 'http://localhost/cardGame/assets/images/cards/SilverSurfer.jpeg',
+            'name' => 'Silver Surfer',
             'intelligence' => 45,
             'force' => 50,
             'velocity' => 50,
@@ -54,8 +54,8 @@ class CardRepository implements GetCardRepositoryInterface
         ],
         [
             'id' => '5a8b297c8078b5de394707bef47cd3bf',
-            'image' => 'http://localhost/cardGame/assets/images/cards/mysterio.jpeg',
-            'name' => 'Wolverine',
+            'image' => 'http://localhost/cardGame/assets/images/cards/SpiderMan.png',
+            'name' => 'Spider Man',
             'intelligence' => 45,
             'force' => 50,
             'velocity' => 50,
@@ -67,8 +67,8 @@ class CardRepository implements GetCardRepositoryInterface
         ],
         [
             'id' => '16404025c29660241cbbdebcfcbb281f',
-            'image' => 'http://localhost/cardGame/assets/images/cards/blackPanther.png',
-            'name' => 'Wolverine',
+            'image' => 'http://localhost/cardGame/assets/images/cards/Thing.jpeg',
+            'name' => 'Thing',
             'intelligence' => 45,
             'force' => 50,
             'velocity' => 50,
