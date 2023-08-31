@@ -27,12 +27,12 @@ final class Image
 
     private static function validate(string $image): void
     {
-        if (!file_exists($image)) {
-            
+        if (! file_exists($image)) {
+
             throw new DomainException('This image does not exist.');
         }
 
-        if (!self::isImage($image)) {
+        if (! self::isImage($image)) {
 
             throw new DomainException('Image is not valid.');
         }
@@ -40,18 +40,22 @@ final class Image
 
     private static function isImage(string $image): bool
     {
-        if (!self::allowedImageTypes($image)) { return false; }
+        if (! self::allowedImageTypes($image)) {
+            return false;
+        }
 
         $allowed_types = [
             IMAGETYPE_JPEG,
             IMAGETYPE_PNG,
-            IMAGETYPE_GIF
+            IMAGETYPE_GIF,
         ];
 
         $details = getimagesize($image);
         $image_type = $details[2];
 
-        if (in_array($image_type, $allowed_types)) { return true; }
+        if (in_array($image_type, $allowed_types)) {
+            return true;
+        }
 
         return false;
     }
@@ -62,12 +66,14 @@ final class Image
             'jpeg',
             'jpg',
             'png',
-            'gif'
+            'gif',
         ];
 
         $image = explode('.', $image);
 
-        if (in_array($image[1], $allowed_types)) { return true; }
+        if (in_array($image[1], $allowed_types)) {
+            return true;
+        }
 
         return false;
     }

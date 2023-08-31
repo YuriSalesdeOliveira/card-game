@@ -2,8 +2,8 @@
 
 namespace Source\App\UseCases\ToBattle;
 
-use Source\Domain\Entities\Card;
 use Source\Domain\Entities\Battle;
+use Source\Domain\Entities\Card;
 use Source\Domain\Entities\CardCollection;
 use Source\Domain\ValueObjects\Identity;
 
@@ -33,7 +33,7 @@ class ToBattle
             $defeatedCardIds
         );
 
-        if (!$battle->getStatusBattle()->isFinished()) {
+        if (! $battle->getStatusBattle()->isFinished()) {
 
             $battle->toBattle(Identity::parse($input->getCardToBattleId()));
         }

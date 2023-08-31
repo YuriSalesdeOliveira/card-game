@@ -12,7 +12,8 @@ readonly class StartBattle
 {
     public function __construct(
         private GetCardRepositoryInterface $getCardRepository
-    ) {}
+    ) {
+    }
 
     public function handle(InputBoundary $input): OutputBoundary
     {   // Warning: melhorar nome dessa variavel

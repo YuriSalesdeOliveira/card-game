@@ -6,7 +6,8 @@ class InputBoundary
 {
     public function __construct(
         private string $playerId
-    ) {}
+    ) {
+    }
 
     public function getPlayerId(): string
     {

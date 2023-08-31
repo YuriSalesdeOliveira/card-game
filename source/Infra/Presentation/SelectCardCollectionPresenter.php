@@ -15,7 +15,7 @@ class SelectCardCollectionPresenter implements PresenterInterface
         $cards = [];
 
         foreach ($data['cards'] as $card) {
-            
+
             unset($card['createdAt']);
 
             $cards[] = $card;
@@ -24,7 +24,7 @@ class SelectCardCollectionPresenter implements PresenterInterface
         return $this->templateEngine->render('selectCardCollection', [
             'page' => 'Select a Heroes Card Collection',
             'cards' => $cards,
-            'route' => $route
+            'route' => $route,
         ]);
     }
 }

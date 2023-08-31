@@ -1,17 +1,17 @@
 <?php
 
-use function DI\get;
-use function DI\create;
 use DI\ContainerBuilder;
-use function DI\autowire;
-
+use Source\Domain\Repositories\Card\GetCardRepositoryInterface;
+use Source\Domain\Repositories\Player\GetPlayerCardIdsRepositoryInterface;
+use Source\Domain\Repositories\Player\GetPlayerRepositoryInterface;
 use Source\Infra\Adapters\TwigTemplateEngine;
+use Source\Infra\Presentation\Interfaces\TemplateEngineInterface;
 use Source\Infra\Repositories\Memory\CardRepository;
 use Source\Infra\Repositories\Memory\PlayerRepository;
-use Source\Domain\Repositories\Card\GetCardRepositoryInterface;
-use Source\Domain\Repositories\Player\GetPlayerRepositoryInterface;
-use Source\Infra\Presentation\Interfaces\TemplateEngineInterface;
-use Source\Domain\Repositories\Player\GetPlayerCardIdsRepositoryInterface;
+
+use function DI\autowire;
+use function DI\create;
+use function DI\get;
 
 $containerBuilder = new ContainerBuilder();
 $containerBuilder->addDefinitions([

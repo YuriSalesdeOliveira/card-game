@@ -21,7 +21,7 @@ class RoundResultPresenter implements PresenterInterface
             'roundWinner' => $lastRoundResult['roundWinner'],
             'round' => $lastRoundResult['round'],
             'statusBattle' => $startedBattle['statusBattle'],
-            'route' => $data['route']
+            'route' => $data['route'],
         ]);
     }
 }

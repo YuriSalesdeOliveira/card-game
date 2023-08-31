@@ -6,7 +6,8 @@ class OutputBoundary
 {
     public function __construct(
         private array $cards
-    ) {}
+    ) {
+    }
 
     public function getCards()
     {

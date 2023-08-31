@@ -26,7 +26,7 @@ class BattleResultPresenter implements PresenterInterface
             'page' => 'Battle Result',
             'battleWinner' => $battleWinner,
             'message' => $message,
-            'route' => $data['route']
+            'route' => $data['route'],
         ]);
     }
 }

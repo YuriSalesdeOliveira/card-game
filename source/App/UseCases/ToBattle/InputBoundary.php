@@ -7,7 +7,8 @@ class InputBoundary
     public function __construct(
         private string $cardToBattleId,
         private array $battle
-    ) {}
+    ) {
+    }
 
     public function getCardToBattleId(): string
     {

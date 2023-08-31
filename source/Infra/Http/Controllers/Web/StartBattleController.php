@@ -2,17 +2,18 @@
 
 namespace Source\Infra\Http\Controllers\Web;
 
-use Slim\Routing\RouteContext;
-use Source\App\UseCases\StartBattle\StartBattle;
-use Source\App\UseCases\StartBattle\InputBoundary;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use Slim\Routing\RouteContext;
+use Source\App\UseCases\StartBattle\InputBoundary;
+use Source\App\UseCases\StartBattle\StartBattle;
 
 class StartBattleController extends Controller
 {
     public function __construct(
         private StartBattle $useCase
-    ) {}
+    ) {
+    }
 
     public function handle(Request $request, Response $response): Response
     {

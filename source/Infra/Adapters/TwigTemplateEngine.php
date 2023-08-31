@@ -2,10 +2,9 @@
 
 namespace Source\Infra\Adapters;
 
+use Source\Infra\Presentation\Interfaces\TemplateEngineInterface;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
-use Source\Infra\Presentation\Interfaces\TemplateEngineInterface;
-use Twig\TwigFunction;
 
 class TwigTemplateEngine implements TemplateEngineInterface
 {
@@ -16,10 +15,10 @@ class TwigTemplateEngine implements TemplateEngineInterface
         $loader = new FilesystemLoader(path('views'));
         $this->twig = new Environment($loader, [
             'cache' => path('cache'),
-            'debug' => true
+            'debug' => true,
         ]);
 
-        $functions = require(path('config') . '/twig.php');
+        $functions = require path('config').'/twig.php';
 
         foreach ($functions as $function) {
             $this->twig->addFunction($function);
@@ -28,7 +27,7 @@ class TwigTemplateEngine implements TemplateEngineInterface
 
     public function render(string $name, array $context = []): string
     {
-        $name = str_replace('.', '/', $name) . '.html.twig';
+        $name = str_replace('.', '/', $name).'.html.twig';
 
         return $this->twig->render($name, $context);
     }

@@ -11,7 +11,8 @@ class BattleResultController
 {
     public function __construct(
         private BattleResultPresenter $presenter
-    ) {}
+    ) {
+    }
 
     public function handle(Request $request, Response $response): Response
     {
@@ -21,7 +22,7 @@ class BattleResultController
         $response->getBody()->write(
             $this->presenter->output([
                 'startedBattle' => $_SESSION['startedBattle'],
-                'route' => $routeParser
+                'route' => $routeParser,
             ])
         );
 

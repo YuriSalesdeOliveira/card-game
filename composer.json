@@ -25,5 +25,8 @@
         "twig/twig": "^3.0",
         "ext-pdo": "*",
         "laravel/pint": "^1.12"
+    },
+    "scripts": {
+        "pint": "vendor/bin/pint"
     }
 }

@@ -11,14 +11,13 @@ class Battle extends Entity
     const LIMIT_ROUNDS = 3;
 
     public function __construct(
-        private StatusBattle            $statusBattle,
+        private StatusBattle $statusBattle,
         private readonly CardCollection $playerCardCollection,
         private readonly CardCollection $machineCardCollection,
-        private array                   $resultOfRounds,
-        private int                     $round,
-        private array                   $defeatedCardIds
-    )
-    {
+        private array $resultOfRounds,
+        private int $round,
+        private array $defeatedCardIds
+    ) {
         $this->parseDefeatedCardIds($this->defeatedCardIds);
     }
 
@@ -38,7 +37,7 @@ class Battle extends Entity
             'machineCardCollection' => $this->getMachineCardCollection()->toArray(),
             'resultOfRounds' => $this->getResultOfRounds(),
             'round' => $this->getRound(),
-            'defeatedCardIds' => $defeatedCardIds
+            'defeatedCardIds' => $defeatedCardIds,
         ];
 
         if ($this->getStatusBattle()->isFinished()) {
@@ -88,7 +87,7 @@ class Battle extends Entity
     // Danger: melhorar logica e retorno para ter mais informacoes
     public function getBattleWinner(): string
     {
-        if (!$this->getStatusBattle()->isFinished()) {
+        if (! $this->getStatusBattle()->isFinished()) {
             throw new DomainException(
                 'It is not possible to get a winner before the battle is over.'
             );
@@ -142,7 +141,7 @@ class Battle extends Entity
     {
         $this->resultOfRounds[] = [
             'round' => $this->getRound(),
-            'roundWinner' => $roundWinner
+            'roundWinner' => $roundWinner,
         ];
     }
 
@@ -152,7 +151,7 @@ class Battle extends Entity
 
             foreach ($cardIds as $cardId) {
 
-                if (!($cardId instanceof Identity)) {
+                if (! ($cardId instanceof Identity)) {
 
                     throw new DomainException(
                         'The elements in defeatedCardIds must be an identity instance.'

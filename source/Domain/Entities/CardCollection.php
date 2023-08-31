@@ -10,10 +10,9 @@ class CardCollection extends Entity
     private array $cards;
 
     public function __construct(
-        array                      $cards,
+        array $cards,
         private readonly int|false $numberOfCards = false
-    )
-    {
+    ) {
         $this->setCards($cards);
     }
 
@@ -37,7 +36,7 @@ class CardCollection extends Entity
         }
 
         foreach ($cards as $card) {
-            if (!($card instanceof Card)) {
+            if (! ($card instanceof Card)) {
                 throw new DomainException('All cards must be an instance of the card entity.');
             }
         }
@@ -63,7 +62,7 @@ class CardCollection extends Entity
 
             foreach ($idsNotAllowed as $idNotAllowed) {
 
-                if (!($idNotAllowed instanceof Identity)) {
+                if (! ($idNotAllowed instanceof Identity)) {
                     throw new DomainException('The elements in idsNotAllowed must be an identity instance.');
                 }
 
@@ -93,6 +92,7 @@ class CardCollection extends Entity
         foreach ($this->cards as $index => $card) {
             if ($card->getId() == $cardId) {
                 unset($this->cards[$index]);
+
                 return true;
             }
         }

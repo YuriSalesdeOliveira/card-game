@@ -2,21 +2,19 @@
 
 namespace Source\App\UseCases\SelectCardCollection;
 
-use Source\Domain\Entities\Battle;
 use Source\Domain\Entities\CardCollection;
-use Source\Domain\ValueObjects\Identity;
 use Source\Domain\Repositories\Card\GetCardRepositoryInterface;
-use Source\Domain\Repositories\Player\GetPlayerRepositoryInterface;
 use Source\Domain\Repositories\Player\GetPlayerCardIdsRepositoryInterface;
+use Source\Domain\Repositories\Player\GetPlayerRepositoryInterface;
+use Source\Domain\ValueObjects\Identity;
 
 readonly class SelectCardCollection
 {
     public function __construct(
-        private GetPlayerRepositoryInterface        $getPlayerRepository,
+        private GetPlayerRepositoryInterface $getPlayerRepository,
         private GetPlayerCardIdsRepositoryInterface $getPlayerCardIdsRepository,
-        private GetCardRepositoryInterface          $getCardRepository
-    )
-    {
+        private GetCardRepositoryInterface $getCardRepository
+    ) {
     }
 
     public function handle(InputBoundary $input): OutputBoundary

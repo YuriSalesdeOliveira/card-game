@@ -7,12 +7,14 @@ use DomainException;
 class Status
 {
     private int $status;
+
     private static array $allowedStatus = [
         23400,
-        23500
+        23500,
     ];
 
     const STARTED = 23400;
+
     const FINISHED = 23500;
 
     public function __construct(int $status)
@@ -39,7 +41,7 @@ class Status
 
     private static function validate(int $status): void
     {
-        if (!in_array($status, self::$allowedStatus)) {
+        if (! in_array($status, self::$allowedStatus)) {
             throw new DomainException('Status is not valid.');
         }
     }

@@ -14,15 +14,16 @@ class Player extends Entity
         private Email $email,
         private Password $password,
         protected DateTimeInterface $createdAt
-    ) {}
-    
+    ) {
+    }
+
     public function toArray(): array
     {
         return [
             'id' => (string) $this->getId(),
             'email' => (string) $this->getEmail(),
             'password' => (string) $this->getPassword(),
-            'createdAt' => $this->getCreatedAt()
+            'createdAt' => $this->getCreatedAt(),
         ];
     }
 
@@ -31,24 +32,28 @@ class Player extends Entity
     {
         $this->id = $id;
     }
+
     public function setEmail(Email $email): void
     {
         $this->email = $email;
     }
+
     public function setPassword(Password $password): void
     {
         $this->password = $password;
     }
-    
+
     // getters
     public function getId(): Identity
     {
         return $this->id;
     }
+
     public function getEmail(): Email
     {
         return $this->email;
     }
+
     public function getPassword(): Password
     {
         return $this->password;

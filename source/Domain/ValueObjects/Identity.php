@@ -29,11 +29,11 @@ final class Identity
     {
         $parsedIdentities = [];
 
-       foreach ($identities as $identity) {
-           $parsedIdentities[] = self::parse($identity);
-       }
+        foreach ($identities as $identity) {
+            $parsedIdentities[] = self::parse($identity);
+        }
 
-       return $parsedIdentities;
+        return $parsedIdentities;
     }
 
     public static function generate(): Identity

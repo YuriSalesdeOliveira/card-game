@@ -10,19 +10,21 @@ abstract class Entity
     protected bool $timestamp = true;
 
     protected DateTimeInterface $createdAt;
+
     protected DateTimeInterface $updatedAt;
 
     public function setCreatedAt(DateTimeInterface $createdAt): void
     {
-        if (!$this->timestamp) {
+        if (! $this->timestamp) {
             throw new DomainException('The timestamp is off for that entity.');
         }
 
         $this->createdAt = $createdAt;
     }
+
     public function setUpdatedAt(DateTimeInterface $updatedAt): void
     {
-        if (!$this->timestamp) {
+        if (! $this->timestamp) {
             throw new DomainException('The timestamp is off for that entity.');
         }
 
@@ -31,23 +33,24 @@ abstract class Entity
 
     public function getCreatedAt(): DateTimeInterface
     {
-        if (!$this->timestamp) {
+        if (! $this->timestamp) {
             throw new DomainException('The timestamp is off for that entity.');
         }
 
-        if (!isset($this->createdAt)) {
+        if (! isset($this->createdAt)) {
             throw new DomainException('There is no create date');
         }
 
         return $this->createdAt;
     }
+
     public function getUpdatedAt(): DateTimeInterface
     {
-        if (!$this->timestamp) {
+        if (! $this->timestamp) {
             throw new DomainException('The timestamp is off for that entity.');
         }
 
-        if (!isset($this->updatedAt)) {
+        if (! isset($this->updatedAt)) {
             throw new DomainException('There is no update date');
         }
 

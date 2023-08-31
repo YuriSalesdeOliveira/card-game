@@ -7,6 +7,6 @@ return [
         'domain' => '',
         'locale' => 'pt_BR',
         'root' => 'http://localhost/cardGame',
-        'basePath' => '/cardGame'
+        'basePath' => '/cardGame',
     ],
 ];

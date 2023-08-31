@@ -5,10 +5,10 @@ namespace Source\Infra\Repositories\Memory;
 use DateTimeImmutable;
 use DomainException;
 use Source\Domain\Entities\Card;
-use Source\Domain\ValueObjects\Name;
-use Source\Domain\ValueObjects\Image;
-use Source\Domain\ValueObjects\Identity;
 use Source\Domain\Repositories\Card\GetCardRepositoryInterface;
+use Source\Domain\ValueObjects\Identity;
+use Source\Domain\ValueObjects\Image;
+use Source\Domain\ValueObjects\Name;
 
 class CardRepository implements GetCardRepositoryInterface
 {
@@ -24,7 +24,7 @@ class CardRepository implements GetCardRepositoryInterface
             'fighting' => 80,
             'power' => 80,
             'overall' => 380,
-            'createdAt' => '2022-02-24 21:07:56'
+            'createdAt' => '2022-02-24 21:07:56',
         ],
         [
             'id' => 'c6c6b47581155db3b410b5de404a7755',
@@ -37,7 +37,7 @@ class CardRepository implements GetCardRepositoryInterface
             'fighting' => 80,
             'power' => 80,
             'overall' => 380,
-            'createdAt' => '2022-02-24 21:07:56'
+            'createdAt' => '2022-02-24 21:07:56',
         ],
         [
             'id' => '38d1ef4371fecfc1df5ab7cd895ffab9',
@@ -50,7 +50,7 @@ class CardRepository implements GetCardRepositoryInterface
             'fighting' => 80,
             'power' => 80,
             'overall' => 380,
-            'createdAt' => '2022-02-24 21:07:56'
+            'createdAt' => '2022-02-24 21:07:56',
         ],
         [
             'id' => '5a8b297c8078b5de394707bef47cd3bf',
@@ -63,7 +63,7 @@ class CardRepository implements GetCardRepositoryInterface
             'fighting' => 80,
             'power' => 80,
             'overall' => 380,
-            'createdAt' => '2022-02-24 21:07:56'
+            'createdAt' => '2022-02-24 21:07:56',
         ],
         [
             'id' => '16404025c29660241cbbdebcfcbb281f',
@@ -76,14 +76,14 @@ class CardRepository implements GetCardRepositoryInterface
             'fighting' => 80,
             'power' => 80,
             'overall' => 380,
-            'createdAt' => '2022-02-24 21:07:56'
+            'createdAt' => '2022-02-24 21:07:56',
         ],
     ];
 
     public function getCardById(Identity $id): Card|false
     {
         foreach ($this->cards as $card) {
-            if ($card['id'] === $id->value()) { 
+            if ($card['id'] === $id->value()) {
                 return new Card(
                     id: new Identity($card['id']),
                     image: new Image($card['image']),
@@ -106,7 +106,7 @@ class CardRepository implements GetCardRepositoryInterface
     public function getCardsById(array $ids): array
     {
         foreach ($ids as $id) {
-            if (!($id instanceof Identity)) {
+            if (! ($id instanceof Identity)) {
                 throw new DomainException(
                     'All ids must be an instance of Identity.'
                 );
@@ -114,12 +114,14 @@ class CardRepository implements GetCardRepositoryInterface
         }
 
         $cards = [];
-        
+
         foreach ($ids as $id) {
 
             $card = $this->getCardById(new Identity($id));
 
-            if ($card instanceof Card) { $cards[] = $card; }
+            if ($card instanceof Card) {
+                $cards[] = $card;
+            }
         }
 
         return $cards;
@@ -128,7 +130,7 @@ class CardRepository implements GetCardRepositoryInterface
     public function getRandomCards(int $limit): array
     {
         $cardIndexes = array_rand($this->cards, $limit);
-        
+
         $cardIds = [];
 
         foreach ($cardIndexes as $index) {
