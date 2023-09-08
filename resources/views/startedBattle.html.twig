@@ -1,19 +1,12 @@
 {% extends "templates/layout.html.twig" %}
 
-{% block scripts %}
-    <script src="{{ assets('js/cardGroup.js') }}"></script>
-{% endblock scripts %}
-
 {% block content %}
 
-    {% set message = {
+    {% embed "templates/message.html.twig" with {
         'title': 'Chegou a hora !',
         'content': 'Você não sabe quem irá enfrentar !
             Escolha com sabedoria o heroi que irá batalhar a favor da sua equipe.'
-        }
-    %}
-
-    {% include "templates/message.html.twig" with message only %}
+    }%}{% endembed %}
 
     <form action="{{ route.urlFor('toBattle') }}" method="post">
         <div class="card-group">

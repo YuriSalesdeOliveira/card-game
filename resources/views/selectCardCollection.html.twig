@@ -1,47 +1,26 @@
 {% extends "templates/layout.html.twig" %}
 
-{% block scripts %}
-    <script src="{{ assets('js/cardGroup.js') }}"></script>
-{% endblock scripts %}
-
 {% block content %}
 
-    {% set message = {
+    {% embed "templates/message.html.twig" with {
         'title': 'Prepare-se para a batalha !',
         'content': 'Escolha os 5 melhores herois para lutar em uma batalha.
             Você pode conseguir novas cartas se vencer. Boa sorte !'
-        }
-    %}
-
-    {% include "templates/message.html.twig" with message only %}
+    } %}{% endembed %}
 
     <form action="{{ route.urlFor('startBattle') }}" method="post">
-        <div class="card-group">
+        <div class="c-card-collection">
             {% for card in cards %}
-                <div class="card-group-container">
-
-                    <input type="checkbox" name="card-collection[]" data-card-id="{{ card.id }}"
-                        value="{{ card.id }}">
-
-                    <div data-card-id="{{ card.id }}" class="card-group-item">
-                        <img src="{{ card.image }}" alt="card {{ card.name }}">
-                        <ul>
-                            <li><span>name:</span> {{ card.name }}</li>
-                            <li><span>intelligence:</span> {{ card.intelligence }}</li>
-                            <li><span>force:</span> {{ card.force }}</li>
-                            <li><span>velocity:</span> {{ card.velocity }}</li>
-                            <li><span>resistance:</span> {{ card.resistance }}</li>
-                            <li><span>fighting:</span> {{ card.fighting }}</li>
-                            <li><span>power:</span> {{ card.power }}</li>
-                            <li><span>overall:</span> {{ card.overall }}</li>
-                        </ul>
-                    </div>
-
-                </div>
+                {% embed "components/card.html.twig" with {
+                    input: {
+                        name: 'card-collection[]'
+                    },
+                    card: card,
+                } %}{% endembed %}
             {% endfor %}
         </div>
 
-        <button type="submit" class="button primary my-10 mx-auto">Start Battle</button>
+        <button type="submit" class="c-button c-button--green">Start Battle</button>
     </form>
 
 {% endblock content %}

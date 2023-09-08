@@ -4,16 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ assets('css/main.tailwind.css') }}">
+    <link rel="stylesheet" href="{{ assets('css/styles.css') }}">
     <link rel="icon" type="image/x-icon" href="{{ assets('images/favicon.ico') }}">
     <title>cardGame</title>
 </head>
 <body>
-    <header class="flex justify-center items-center w-100 h-20 bg-slate-400">
-        <span class="text-lg text-slate-700 uppercase">{{ page }}</span>
+    <header class="c-header">
+        <div class="c-header__container">
+            <h1 class="c-header__title">{{ page }}</h1>
+        </div>
     </header>
 
-    <main class="w-5/6 mx-auto">
+    <main class="c-main-content">
         {% block content %}
         {% endblock content %}
     </main>
