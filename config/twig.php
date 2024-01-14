@@ -5,6 +5,6 @@ use Twig\TwigFunction;
 return [
     new TwigFunction(
         'assets',
-        fn ($asset) => app('site.root')."/assets/{$asset}"
+        fn (string $asset): string => app('site.root')."/assets/{$asset}"
     ),
 ];

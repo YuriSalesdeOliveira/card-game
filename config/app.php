@@ -4,9 +4,9 @@ return [
     'site' => [
         'name' => 'cardGame',
         'description' => 'Jogo de batalha de cartas de herois',
-        'domain' => '',
+        'domain' => 'localhost',
         'locale' => 'pt_BR',
-        'root' => 'http://localhost/cardGame',
-        'basePath' => '/cardGame',
+        'root' => 'https://localhost',
+        'basePath' => '',
     ],
 ];

@@ -12,7 +12,10 @@ AppFactory::setContainer($container);
 
 $app = AppFactory::create();
 $app->addErrorMiddleware(true, true, true);
-$app->setBasePath(app('site.basePath'));
+
+if ($basePath = app('site.basePath')) {
+    $app->setBasePath($basePath);
+}
 
 $webRoutes = require path('routes').'/web.php';
 $apiRoutes = require path('routes').'/api.php';
