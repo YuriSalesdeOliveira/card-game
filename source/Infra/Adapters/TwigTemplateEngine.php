@@ -14,7 +14,7 @@ class TwigTemplateEngine implements TemplateEngineInterface
     {
         $loader = new FilesystemLoader(path('views'));
         $this->twig = new Environment($loader, [
-            'cache' => path('cache'),
+            'cache' => path('storage').'/twig/cache',
             'debug' => true,
         ]);
 
