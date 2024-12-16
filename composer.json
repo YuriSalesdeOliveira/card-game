@@ -1,12 +1,12 @@
 {
-    "name": "yurioliveira/cardgame",
-    "description": "Jogo de batalha de cartas de herois",
+    "name": "yuri-oliveira/card-game",
+    "description": "Battle card hero game",
     "authors": [
         {
             "name": "Yuri Sales de Oliveira",
-            "email": "yuri_oli@hotmail.com",
-            "role": "Programador",
-            "homepage": "https://www.facebook.com/profile.php?id=100052262689312"
+            "email": "yusadeol@gmail.com",
+            "role": "Full Cycle Developer",
+            "homepage": "https://www.linkedin.com/in/yuri-sales-de-oliveira"
         }
     ],
     "autoload": {
@@ -18,13 +18,12 @@
         ]
     },
     "require": {
-        "php": ">=8.2",
-        "php-di/php-di": "^6.3",
-        "slim/slim": "4.*",
-        "slim/psr7": "^1.5",
-        "twig/twig": "^3.0",
-        "ext-pdo": "*",
-        "laravel/pint": "^1.12"
+        "php": ">=8.4",
+        "php-di/php-di": "^7.0",
+        "slim/slim": "^4.14",
+        "slim/psr7": "^1.7",
+        "twig/twig": "^3.17",
+        "laravel/pint": "^1.18"
     },
     "scripts": {
         "pint": "vendor/bin/pint"
