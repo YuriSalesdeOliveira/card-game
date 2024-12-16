@@ -23,7 +23,8 @@
         "slim/slim": "^4.14",
         "slim/psr7": "^1.7",
         "twig/twig": "^3.17",
-        "laravel/pint": "^1.18"
+        "laravel/pint": "^1.18",
+        "vlucas/phpdotenv": "^5.6"
     },
     "scripts": {
         "pint": "vendor/bin/pint"
