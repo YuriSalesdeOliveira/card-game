@@ -1,12 +1,45 @@
 <div class="c-card">
 
-    <label for="card-{{ card.id }}">
+    {% if (input) %}
+        <label for="card-{{ card.id }}" class="c-card__label">
 
-        <input type="checkbox" id="card-{{ card.id }}" name="{{ input.name }}" value="{{ card.id }}">
+            <input
+                    type="{{ input.type }}"
+                    name="{{ input.name }}"
+                    value="{{ card.id }}"
+                    id="card-{{ card.id }}"
+                    class="c-card__input"
+            >
 
+            <div class="c-card__wrapper">
+
+                <img
+                        src="{{ card.image }}"
+                        alt="card {{ card.name }}"
+                        class="c-card__image"
+                >
+
+                <ul class="c-card__skills">
+                    <li class="c-card__skill"><span>intelligence:</span> {{ card.intelligence }}</li>
+                    <li class="c-card__skill"><span>force:</span> {{ card.force }}</li>
+                    <li class="c-card__skill"><span>velocity:</span> {{ card.velocity }}</li>
+                    <li class="c-card__skill"><span>resistance:</span> {{ card.resistance }}</li>
+                    <li class="c-card__skill"><span>fighting:</span> {{ card.fighting }}</li>
+                    <li class="c-card__skill"><span>power:</span> {{ card.power }}</li>
+                    <li class="c-card__skill"><span>overall:</span> {{ card.overall }}</li>
+                </ul>
+
+            </div>
+
+        </label>
+    {% else %}
         <div class="c-card__wrapper">
 
-            <img src="{{ card.image }}" alt="card {{ card.name }}">
+            <img
+                    src="{{ card.image }}"
+                    alt="card {{ card.name }}"
+                    class="c-card__image"
+            >
 
             <ul class="c-card__skills">
                 <li class="c-card__skill"><span>intelligence:</span> {{ card.intelligence }}</li>
@@ -19,7 +52,6 @@
             </ul>
 
         </div>
-
-    </label>
+    {% endif %}
 
 </div>

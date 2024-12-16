@@ -1,0 +1,13 @@
+.c-card-collection {
+    --items-number: 5;
+    --gap: 0.8rem;
+
+    display: flex;
+    justify-content: center;
+    gap: var(--gap);
+
+    .c-card {
+        flex-shrink: 0;
+        width: calc(calc(100% - (var(--gap) * (var(--items-number) - 1))) / var(--items-number));
+    }
+}

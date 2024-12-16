@@ -13,6 +13,7 @@
             {% for card in cards %}
                 {% embed "components/card.html.twig" with {
                     input: {
+                        type: 'checkbox',
                         name: 'card-collection[]'
                     },
                     card: card,

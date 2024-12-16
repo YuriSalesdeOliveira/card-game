@@ -1,0 +1,49 @@
+.c-card {
+    width: 100%;
+    margin-bottom: 5rem;
+    border-radius: 0.6rem;
+    overflow: hidden;
+
+    &:has(.c-card__label) {
+        .c-card__label {
+            cursor: pointer;
+        }
+
+        .c-card__input {
+            display: none;
+        }
+
+        &:has(.c-card__input:checked) {
+            box-shadow: 0 4px 8px 4px rgba(40, 167, 69, 0.8);
+        }
+
+        &:hover {
+            &:not(:has(.c-card__input:checked)) {
+                box-shadow: 0 4px 8px 4px rgba(0, 123, 255, 0.4);
+            }
+        }
+    }
+
+    .c-card__wrapper {
+        .c-card__image {
+            width: 100%;
+            display: block;
+            aspect-ratio: 3/6;
+            object-fit: cover;
+        }
+
+        .c-card__skills {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            padding: 0.4rem 0.8rem;
+            list-style: none;
+            background: linear-gradient(to right, #0e0c17, #0e1531, #0e1531, #0e0c17);
+
+            .c-card__skill {
+                font-size: 1.2rem;
+                color: white;
+            }
+        }
+    }
+}
