@@ -1,4 +1,4 @@
 vendor
-env.ini
+.env
 node_modules
 .idea
