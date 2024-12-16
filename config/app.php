@@ -2,11 +2,11 @@
 
 return [
     'site' => [
-        'name' => 'cardGame',
-        'description' => 'Jogo de batalha de cartas de herois',
+        'name' => 'card-game',
+        'description' => 'Battle card hero game',
         'domain' => 'localhost',
         'locale' => 'pt_BR',
-        'root' => 'https://localhost',
-        'basePath' => '',
+        'root' => 'http://localhost',
+        'basePath' => '/card-game',
     ],
 ];
