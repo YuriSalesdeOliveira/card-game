@@ -18,10 +18,7 @@ if ($basePath = app('site.basePath')) {
 }
 
 $webRoutes = require path('routes').'/web.php';
-$apiRoutes = require path('routes').'/api.php';
-
 $webRoutes($app);
-$apiRoutes($app);
 
 $app->run();
 
