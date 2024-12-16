@@ -12,8 +12,7 @@ class ToBattleController
 {
     public function __construct(
         private ToBattle $useCase
-    ) {
-    }
+    ) {}
 
     public function handle(Request $request, Response $response): Response
     {

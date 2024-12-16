@@ -11,8 +11,7 @@ class BattleResultController
 {
     public function __construct(
         private BattleResultPresenter $presenter
-    ) {
-    }
+    ) {}
 
     public function handle(Request $request, Response $response): Response
     {

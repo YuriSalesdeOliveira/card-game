@@ -13,7 +13,7 @@ use function DI\autowire;
 use function DI\create;
 use function DI\get;
 
-$containerBuilder = new ContainerBuilder();
+$containerBuilder = new ContainerBuilder;
 $containerBuilder->addDefinitions([
 
     PDO::class => create(PDO::class)->constructor(

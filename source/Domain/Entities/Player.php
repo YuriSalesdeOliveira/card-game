@@ -14,8 +14,7 @@ class Player extends Entity
         private Email $email,
         private Password $password,
         protected DateTimeInterface $createdAt
-    ) {
-    }
+    ) {}
 
     public function toArray(): array
     {

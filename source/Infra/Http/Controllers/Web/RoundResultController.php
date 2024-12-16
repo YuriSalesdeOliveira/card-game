@@ -11,8 +11,7 @@ class RoundResultController extends Controller
 {
     public function __construct(
         private RoundResultPresenter $presenter
-    ) {
-    }
+    ) {}
 
     public function handle(Request $request, Response $response): Response
     {

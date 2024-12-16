@@ -22,8 +22,7 @@ class Card extends Entity
         private int $power,
         private int $overall,
         protected DateTimeInterface $createdAt,
-    ) {
-    }
+    ) {}
 
     public static function toCard(array $cardsAsArray): array
     {

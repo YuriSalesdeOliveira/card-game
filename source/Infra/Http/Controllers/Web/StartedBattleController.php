@@ -11,8 +11,7 @@ class StartedBattleController extends Controller
 {
     public function __construct(
         private StartedBattlePresenter $presenter
-    ) {
-    }
+    ) {}
 
     public function handle(Request $request, Response $response): Response
     {

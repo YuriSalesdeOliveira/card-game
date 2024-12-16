@@ -14,8 +14,7 @@ readonly class SelectCardCollection
         private GetPlayerRepositoryInterface $getPlayerRepository,
         private GetPlayerCardIdsRepositoryInterface $getPlayerCardIdsRepository,
         private GetCardRepositoryInterface $getCardRepository
-    ) {
-    }
+    ) {}
 
     public function handle(InputBoundary $input): OutputBoundary
     {

@@ -2,6 +2,4 @@
 
 namespace Source\Infra\Http\Controllers\Web;
 
-abstract class Controller
-{
-}
+abstract class Controller {}

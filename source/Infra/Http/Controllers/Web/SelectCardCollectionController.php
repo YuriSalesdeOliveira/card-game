@@ -14,8 +14,7 @@ class SelectCardCollectionController extends Controller
     public function __construct(
         private SelectCardCollection $useCase,
         private SelectCardCollectionPresenter $presenter
-    ) {
-    }
+    ) {}
 
     public function handle(Request $request, Response $response): Response
     {

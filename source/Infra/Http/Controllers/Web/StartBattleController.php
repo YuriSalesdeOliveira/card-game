@@ -12,8 +12,7 @@ class StartBattleController extends Controller
 {
     public function __construct(
         private StartBattle $useCase
-    ) {
-    }
+    ) {}
 
     public function handle(Request $request, Response $response): Response
     {
