@@ -2,6 +2,7 @@
 @import "vars.css";
 @import "card.css";
 @import "card-collection.css";
+@import "button.css";
 
 .c-header {
     width: 100%;
@@ -49,4 +50,42 @@
     .c-message__content {
         font-size: 1.2rem;
     }
+}
+
+/* Utils */
+
+.u-font-size-md {
+    font-size: 1.4rem;
+}
+
+.u-font-size-lg {
+    font-size: 2.0rem;
+}
+
+.u-width-100 {
+    width: 100% !important;
+}
+
+.u-display-flex {
+    display: flex !important;
+}
+
+.u-flex-direction-column {
+    flex-direction: column !important;
+}
+
+.u-gap-4 {
+    gap: 4rem !important;
+}
+
+.u-justify-content-center {
+    justify-content: center !important;
+}
+
+.u-align-items-center {
+    align-items: center !important;
+}
+
+.u-margin-bottom-4 {
+    margin-bottom: 4rem !important;
 }

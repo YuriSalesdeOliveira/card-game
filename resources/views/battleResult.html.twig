@@ -2,11 +2,11 @@
 
 {% block content %}
 
-    <div class="w-[500px] flex flex-col items-center mt-14 mx-auto">
-        <h1 class="text-lg">{{ battleWinner|capitalize }} Wins</h1>
-        <p>{{ message }}</p>
+    <div class="u-display-flex u-align-items-center u-flex-direction-column u-gap-4">
+        <h1 class="u-font-size-lg">{{ battleWinner|capitalize }} Wins</h1>
+        <p class="u-font-size-md">{{ message }}</p>
 
-        <a href="{{ route.urlFor('selectCardCollection') }}" class="button primary">finish</a>
+        <a href="{{ route.urlFor('selectCardCollection') }}" class="c-button is-blue">Finish</a>
     </div>
 
 {% endblock content %}

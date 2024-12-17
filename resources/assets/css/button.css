@@ -1,0 +1,45 @@
+.c-button {
+    cursor: pointer;
+    padding: 1.2rem 1.6rem;
+    font-size: 1.2rem;
+    text-decoration: none;
+    border: none;
+    border-radius: 0.4rem;
+    background-color: transparent;
+
+    &.is-green {
+        color: white;
+        background-color: #4CAF50;
+
+        &:hover {
+            background-color: #43A047;
+        }
+    }
+
+    &.is-blue {
+        color: white;
+        background-color: #2196F3;
+
+        &:hover {
+            background-color: #1E88E5;
+        }
+    }
+
+    &.is-red {
+        color: white;
+        background-color: #F44336;
+
+        &:hover {
+            background-color: #E53935;
+        }
+    }
+
+    &.is-yellow {
+        color: black;
+        background-color: #FFEB3B;
+
+        &:hover {
+            background-color: #FDD835;
+        }
+    }
+}

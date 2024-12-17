@@ -2,14 +2,14 @@
 
 {% block content %}
 
-    <div class="w-[500px] flex flex-col items-center mt-14 mx-auto">
-        <h1 class="text-lg">{{ roundWinner|capitalize }} wins</h1>
-        <div>Round {{ round }}</div>
+    <div class="u-display-flex u-align-items-center u-flex-direction-column u-gap-4">
+        <h1 class="u-font-size-lg">{{ roundWinner|capitalize }} Wins</h1>
+        <p class="u-font-size-md">Round {{ round }}</p>
 
         {% if statusBattle.isFinished() %}
-            <a href="{{ route.urlFor('battleResult') }}" class="button primary">battle result</a>
+            <a href="{{ route.urlFor('battleResult') }}" class="c-button is-blue">Battle Result</a>
         {% else %}
-            <a href="{{ route.urlFor('startedBattle') }}" class="button primary">next round</a>
+            <a href="{{ route.urlFor('startedBattle') }}" class="c-button is-blue">Next Round</a>
         {% endif %}
     </div>
 
